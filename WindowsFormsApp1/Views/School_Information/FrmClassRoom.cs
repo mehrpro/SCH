@@ -17,7 +17,7 @@ namespace SchoolApp.Views.School_Information
 
 
         }
-
+        pr
         private void simpleButton3_Click(object sender, System.EventArgs e)
         {
             Close();
