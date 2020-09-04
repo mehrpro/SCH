@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="schooldbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="academic_year">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="usmallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="years_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="years_start" Type="date" Nullable="false" />
+          <Property Name="years_finish" Type="date" Nullable="false" />
+          <Property Name="enabled" Type="tinyint" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="classrooms">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="utinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ClassLevel" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClassRegisterDate" Type="date" Nullable="false" />
+          <Property Name="ClassRoomEnable" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="registered">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="years_fk" Type="usmallint" Nullable="false" />
+          <Property Name="school_fk" Type="utinyint" Nullable="false" />
+          <Property Name="class_fk" Type="utinyint" Nullable="false" />
+          <Property Name="student_fk" Type="uint" Nullable="false" />
+          <Property Name="enabled" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="registered_tag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tagid_fk" Type="int" Nullable="false" />
+          <Property Name="student_fk" Type="uint" Nullable="false" />
+          <Property Name="enabled" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="schools">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="utinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="SchoolAddress" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="SchoolTel" Type="varchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="151" Nullable="false" />
+          <Property Name="StudentCode" Type="varchar" MaxLength="20" />
+          <Property Name="StudentNatinalCode" Type="int" Nullable="false" />
+          <Property Name="FatherName" Type="varchar" MaxLength="50" />
+          <Property Name="MotherName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HomePhone" Type="char" MaxLength="11" />
+          <Property Name="FatherPhone" Type="char" MaxLength="11" />
+          <Property Name="MotherPhone" Type="char" MaxLength="11" />
+          <Property Name="SMS" Type="char" MaxLength="11" />
+          <Property Name="BrithDate" Type="date" />
+          <Property Name="RegDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tagid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tagid_hex" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="enabled" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="FName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mobile" Type="char" MaxLength="12" />
+          <Property Name="Password" Type="char" MaxLength="120" />
+        </EntityType>
+        <Association Name="register_years_academic_id">
+          <End Role="academic_year" Type="Self.academic_year" Multiplicity="1" />
+          <End Role="registered" Type="Self.registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academic_year">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="years_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="register_years_classrooms_id">
+          <End Role="classrooms" Type="Self.classrooms" Multiplicity="1" />
+          <End Role="registered" Type="Self.registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classrooms">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="class_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="register_years_schools_id">
+          <End Role="schools" Type="Self.schools" Multiplicity="1" />
+          <End Role="registered" Type="Self.registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schools">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="school_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="register_years_students">
+          <End Role="students" Type="Self.students" Multiplicity="1" />
+          <End Role="registered" Type="Self.registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="student_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registeredTag_student_students_id">
+          <End Role="students" Type="Self.students" Multiplicity="1" />
+          <End Role="registered_tag" Type="Self.registered_tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered_tag">
+              <PropertyRef Name="student_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registeredTag_tagid_tagid_id">
+          <End Role="tagid" Type="Self.tagid" Multiplicity="1" />
+          <End Role="registered_tag" Type="Self.registered_tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tagid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registered_tag">
+              <PropertyRef Name="tagid_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="schooldbModelStoreContainer">
+          <EntitySet Name="academic_year" EntityType="Self.academic_year" Schema="schooldb" store:Type="Tables" />
+          <EntitySet Name="classrooms" EntityType="Self.classrooms" Schema="schooldb" store:Type="Tables" />
+          <EntitySet Name="registered" EntityType="Self.registered" Schema="schooldb" store:Type="Tables" />
+          <EntitySet Name="registered_tag" EntityType="Self.registered_tag" Schema="schooldb" store:Type="Tables" />
+          <EntitySet Name="schools" EntityType="Self.schools" Schema="schooldb" store:Type="Tables" />
+          <EntitySet Name="students" EntityType="Self.students" Schema="schooldb" store:Type="Tables" />
+          <EntitySet Name="tagid" EntityType="Self.tagid" Schema="schooldb" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="schooldb" store:Type="Tables" />
+          <AssociationSet Name="register_years_academic_id" Association="Self.register_years_academic_id">
+            <End Role="academic_year" EntitySet="academic_year" />
+            <End Role="registered" EntitySet="registered" />
+          </AssociationSet>
+          <AssociationSet Name="register_years_classrooms_id" Association="Self.register_years_classrooms_id">
+            <End Role="classrooms" EntitySet="classrooms" />
+            <End Role="registered" EntitySet="registered" />
+          </AssociationSet>
+          <AssociationSet Name="register_years_schools_id" Association="Self.register_years_schools_id">
+            <End Role="schools" EntitySet="schools" />
+            <End Role="registered" EntitySet="registered" />
+          </AssociationSet>
+          <AssociationSet Name="register_years_students" Association="Self.register_years_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="registered" EntitySet="registered" />
+          </AssociationSet>
+          <AssociationSet Name="registeredTag_student_students_id" Association="Self.registeredTag_student_students_id">
+            <End Role="students" EntitySet="students" />
+            <End Role="registered_tag" EntitySet="registered_tag" />
+          </AssociationSet>
+          <AssociationSet Name="registeredTag_tagid_tagid_id" Association="Self.registeredTag_tagid_tagid_id">
+            <End Role="tagid" EntitySet="tagid" />
+            <End Role="registered_tag" EntitySet="registered_tag" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="schooldbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="schooldbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="academic_year" EntityType="schooldbModel.academic_year" />
+          <EntitySet Name="classrooms" EntityType="schooldbModel.classroom" />
+          <EntitySet Name="registereds" EntityType="schooldbModel.registered" />
+          <EntitySet Name="registered_tag" EntityType="schooldbModel.registered_tag" />
+          <EntitySet Name="schools" EntityType="schooldbModel.school" />
+          <EntitySet Name="students" EntityType="schooldbModel.student" />
+          <EntitySet Name="tagids" EntityType="schooldbModel.tagid" />
+          <EntitySet Name="users" EntityType="schooldbModel.user" />
+          <AssociationSet Name="register_years_academic_id" Association="schooldbModel.register_years_academic_id">
+            <End Role="academic_year" EntitySet="academic_year" />
+            <End Role="registered" EntitySet="registereds" />
+          </AssociationSet>
+          <AssociationSet Name="register_years_classrooms_id" Association="schooldbModel.register_years_classrooms_id">
+            <End Role="classroom" EntitySet="classrooms" />
+            <End Role="registered" EntitySet="registereds" />
+          </AssociationSet>
+          <AssociationSet Name="register_years_schools_id" Association="schooldbModel.register_years_schools_id">
+            <End Role="school" EntitySet="schools" />
+            <End Role="registered" EntitySet="registereds" />
+          </AssociationSet>
+          <AssociationSet Name="register_years_students" Association="schooldbModel.register_years_students">
+            <End Role="student" EntitySet="students" />
+            <End Role="registered" EntitySet="registereds" />
+          </AssociationSet>
+          <AssociationSet Name="registeredTag_student_students_id" Association="schooldbModel.registeredTag_student_students_id">
+            <End Role="student" EntitySet="students" />
+            <End Role="registered_tag" EntitySet="registered_tag" />
+          </AssociationSet>
+          <AssociationSet Name="registeredTag_tagid_tagid_id" Association="schooldbModel.registeredTag_tagid_tagid_id">
+            <End Role="tagid" EntitySet="tagids" />
+            <End Role="registered_tag" EntitySet="registered_tag" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="academic_year">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="years_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="years_start" Type="DateTime" Nullable="false" />
+          <Property Name="years_finish" Type="DateTime" Nullable="false" />
+          <Property Name="enabled" Type="SByte" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_academic_id" FromRole="academic_year" ToRole="registered" />
+        </EntityType>
+        <EntityType Name="classroom">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ClassLevel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClassRegisterDate" Type="DateTime" Nullable="false" />
+          <Property Name="ClassRoomEnable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_classrooms_id" FromRole="classroom" ToRole="registered" />
+        </EntityType>
+        <EntityType Name="registered">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="years_fk" Type="Int32" Nullable="false" />
+          <Property Name="school_fk" Type="Byte" Nullable="false" />
+          <Property Name="class_fk" Type="Byte" Nullable="false" />
+          <Property Name="student_fk" Type="Int64" Nullable="false" />
+          <Property Name="enabled" Type="SByte" Nullable="false" />
+          <NavigationProperty Name="academic_year" Relationship="schooldbModel.register_years_academic_id" FromRole="registered" ToRole="academic_year" />
+          <NavigationProperty Name="classroom" Relationship="schooldbModel.register_years_classrooms_id" FromRole="registered" ToRole="classroom" />
+          <NavigationProperty Name="school" Relationship="schooldbModel.register_years_schools_id" FromRole="registered" ToRole="school" />
+          <NavigationProperty Name="student" Relationship="schooldbModel.register_years_students" FromRole="registered" ToRole="student" />
+        </EntityType>
+        <EntityType Name="registered_tag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tagid_fk" Type="Int32" Nullable="false" />
+          <Property Name="student_fk" Type="Int64" Nullable="false" />
+          <Property Name="enabled" Type="SByte" Nullable="false" />
+          <NavigationProperty Name="student" Relationship="schooldbModel.registeredTag_student_students_id" FromRole="registered_tag" ToRole="student" />
+          <NavigationProperty Name="tagid" Relationship="schooldbModel.registeredTag_tagid_tagid_id" FromRole="registered_tag" ToRole="tagid" />
+        </EntityType>
+        <EntityType Name="school">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SchoolAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SchoolTel" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_schools_id" FromRole="school" ToRole="registered" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="151" FixedLength="false" Unicode="false" />
+          <Property Name="StudentCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="StudentNatinalCode" Type="Int32" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MotherName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HomePhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="FatherPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="MotherPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="SMS" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="BrithDate" Type="DateTime" />
+          <Property Name="RegDate" Type="DateTime" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_students" FromRole="student" ToRole="registered" />
+          <NavigationProperty Name="registered_tag" Relationship="schooldbModel.registeredTag_student_students_id" FromRole="student" ToRole="registered_tag" />
+        </EntityType>
+        <EntityType Name="tagid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tagid_hex" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="registered_tag" Relationship="schooldbModel.registeredTag_tagid_tagid_id" FromRole="tagid" ToRole="registered_tag" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="register_years_academic_id">
+          <End Type="schooldbModel.academic_year" Role="academic_year" Multiplicity="1" />
+          <End Type="schooldbModel.registered" Role="registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academic_year">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="years_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="register_years_classrooms_id">
+          <End Type="schooldbModel.classroom" Role="classroom" Multiplicity="1" />
+          <End Type="schooldbModel.registered" Role="registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classroom">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="class_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="register_years_schools_id">
+          <End Type="schooldbModel.school" Role="school" Multiplicity="1" />
+          <End Type="schooldbModel.registered" Role="registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="school">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="school_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="register_years_students">
+          <End Type="schooldbModel.student" Role="student" Multiplicity="1" />
+          <End Type="schooldbModel.registered" Role="registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="student_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registeredTag_student_students_id">
+          <End Type="schooldbModel.student" Role="student" Multiplicity="1" />
+          <End Type="schooldbModel.registered_tag" Role="registered_tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered_tag">
+              <PropertyRef Name="student_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registeredTag_tagid_tagid_id">
+          <End Type="schooldbModel.tagid" Role="tagid" Multiplicity="1" />
+          <End Type="schooldbModel.registered_tag" Role="registered_tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tagid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registered_tag">
+              <PropertyRef Name="tagid_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="schooldbModelStoreContainer" CdmEntityContainer="schooldbEntities">
+          <EntitySetMapping Name="academic_year">
+            <EntityTypeMapping TypeName="schooldbModel.academic_year">
+              <MappingFragment StoreEntitySet="academic_year">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="years_finish" ColumnName="years_finish" />
+                <ScalarProperty Name="years_start" ColumnName="years_start" />
+                <ScalarProperty Name="years_name" ColumnName="years_name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="classrooms">
+            <EntityTypeMapping TypeName="schooldbModel.classroom">
+              <MappingFragment StoreEntitySet="classrooms">
+                <ScalarProperty Name="ClassRoomEnable" ColumnName="ClassRoomEnable" />
+                <ScalarProperty Name="ClassRegisterDate" ColumnName="ClassRegisterDate" />
+                <ScalarProperty Name="ClassLevel" ColumnName="ClassLevel" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registereds">
+            <EntityTypeMapping TypeName="schooldbModel.registered">
+              <MappingFragment StoreEntitySet="registered">
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="student_fk" ColumnName="student_fk" />
+                <ScalarProperty Name="class_fk" ColumnName="class_fk" />
+                <ScalarProperty Name="school_fk" ColumnName="school_fk" />
+                <ScalarProperty Name="years_fk" ColumnName="years_fk" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registered_tag">
+            <EntityTypeMapping TypeName="schooldbModel.registered_tag">
+              <MappingFragment StoreEntitySet="registered_tag">
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="student_fk" ColumnName="student_fk" />
+                <ScalarProperty Name="tagid_fk" ColumnName="tagid_fk" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schools">
+            <EntityTypeMapping TypeName="schooldbModel.school">
+              <MappingFragment StoreEntitySet="schools">
+                <ScalarProperty Name="SchoolTel" ColumnName="SchoolTel" />
+                <ScalarProperty Name="SchoolAddress" ColumnName="SchoolAddress" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="schooldbModel.student">
+              <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="BrithDate" ColumnName="BrithDate" />
+                <ScalarProperty Name="SMS" ColumnName="SMS" />
+                <ScalarProperty Name="MotherPhone" ColumnName="MotherPhone" />
+                <ScalarProperty Name="FatherPhone" ColumnName="FatherPhone" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="StudentNatinalCode" ColumnName="StudentNatinalCode" />
+                <ScalarProperty Name="StudentCode" ColumnName="StudentCode" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tagids">
+            <EntityTypeMapping TypeName="schooldbModel.tagid">
+              <MappingFragment StoreEntitySet="tagid">
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="tagid_hex" ColumnName="tagid_hex" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="schooldbModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
