@@ -54,9 +54,11 @@
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.btnClassRoom = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.ribGroupFirstInformation = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribTagCard = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribSchoolPropertes = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             this.backstageViewControl1.SuspendLayout();
@@ -82,10 +84,11 @@
             this.skinBarSubItem1,
             this.skinDropDownButtonItem1,
             this.btnClassRoom,
-            this.barButtonItem6});
+            this.barButtonItem6,
+            this.barButtonItem1});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ribbonControl1.MaxItemId = 11;
+            this.ribbonControl1.MaxItemId = 12;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribGroupFirstInformation});
@@ -271,6 +274,7 @@
             this.btnAcademicYears.ImageOptions.Image = global::SchoolApp.Properties.Resources.calendar_16x16;
             this.btnAcademicYears.ImageOptions.LargeImage = global::SchoolApp.Properties.Resources.calendar_32x32;
             this.btnAcademicYears.Name = "btnAcademicYears";
+            this.btnAcademicYears.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAcademicYears_ItemClick);
             // 
             // barButtonItem4
             // 
@@ -317,13 +321,22 @@
             this.barButtonItem6.Id = 10;
             this.barButtonItem6.Name = "barButtonItem6";
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "دانش آموز";
+            this.barButtonItem1.Id = 11;
+            this.barButtonItem1.ImageOptions.Image = global::SchoolApp.Properties.Resources.usergroup_16x16;
+            this.barButtonItem1.ImageOptions.LargeImage = global::SchoolApp.Properties.Resources.usergroup_32x32;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
             // ribGroupFirstInformation
             // 
             this.ribGroupFirstInformation.Appearance.Options.UseTextOptions = true;
             this.ribGroupFirstInformation.Appearance.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.Yes;
             this.ribGroupFirstInformation.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribTagCard,
-            this.ribSchoolPropertes});
+            this.ribSchoolPropertes,
+            this.ribbonPageGroup1});
             this.ribGroupFirstInformation.ImageOptions.Image = global::SchoolApp.Properties.Resources.convert_32x32;
             this.ribGroupFirstInformation.Name = "ribGroupFirstInformation";
             this.ribGroupFirstInformation.Text = "اطلاعات پایه";
@@ -341,6 +354,12 @@
             this.ribSchoolPropertes.ItemLinks.Add(this.btnAcademicYears);
             this.ribSchoolPropertes.Name = "ribSchoolPropertes";
             this.ribSchoolPropertes.Text = "مدیریت مدرسه";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
             // 
             // MainForm
             // 
@@ -403,5 +422,7 @@
         private DevExpress.XtraBars.BarButtonItem btnClassRoom;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribSchoolPropertes;
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
     }
 }

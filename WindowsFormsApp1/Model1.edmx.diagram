@@ -5,7 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="49933de6adaf452894f7764efcfd86a2" Name="Diagram1">
-        <EntityTypeShape EntityType="schooldbModel.academic_year" Width="1.5" PointX="3.75" PointY="14" />
+        <EntityTypeShape EntityType="schooldbModel.academic_year" Width="1.5" PointX="3.75" PointY="14.25" />
+        <EntityTypeShape EntityType="schooldbModel.classlevel" Width="1.5" PointX="1.5" PointY="11.5" />
         <EntityTypeShape EntityType="schooldbModel.classroom" Width="1.5" PointX="3.75" PointY="11.125" />
         <EntityTypeShape EntityType="schooldbModel.registered" Width="1.5" PointX="6" PointY="4.125" />
         <EntityTypeShape EntityType="schooldbModel.registered_tag" Width="1.5" PointX="3" PointY="4.5" />
@@ -14,6 +15,7 @@
         <EntityTypeShape EntityType="schooldbModel.tagid" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="schooldbModel.user" Width="1.5" PointX="5.75" PointY="8.375" />
         <AssociationConnector Association="schooldbModel.register_years_academic_id" />
+        <AssociationConnector Association="schooldbModel.fk_classlevel" />
         <AssociationConnector Association="schooldbModel.register_years_classrooms_id" />
         <AssociationConnector Association="schooldbModel.register_years_schools_id" />
         <AssociationConnector Association="schooldbModel.register_years_students" />

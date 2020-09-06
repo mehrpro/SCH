@@ -16,13 +16,20 @@
           <Property Name="enabled" Type="tinyint" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="300" />
         </EntityType>
+        <EntityType Name="classlevels">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" Nullable="false" />
+          <Property Name="ClassLevel" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
         <EntityType Name="classrooms">
           <Key>
             <PropertyRef Name="ClassID" />
           </Key>
           <Property Name="ClassID" Type="utinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClassName" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="ClassLevel" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClassLevel" Type="tinyint" Nullable="false" />
           <Property Name="ClassRegisterDate" Type="date" Nullable="false" />
           <Property Name="ClassRoomEnable" Type="bool" Nullable="false" />
         </EntityType>
@@ -94,6 +101,18 @@
           <Property Name="Mobile" Type="char" MaxLength="12" />
           <Property Name="Password" Type="char" MaxLength="120" />
         </EntityType>
+        <Association Name="fk_classlevel">
+          <End Role="classlevels" Type="Self.classlevels" Multiplicity="1" />
+          <End Role="classrooms" Type="Self.classrooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classlevels">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="classrooms">
+              <PropertyRef Name="ClassLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="register_years_academic_id">
           <End Role="academic_year" Type="Self.academic_year" Multiplicity="1" />
           <End Role="registered" Type="Self.registered" Multiplicity="*" />
@@ -168,6 +187,7 @@
         </Association>
         <EntityContainer Name="schooldbModelStoreContainer">
           <EntitySet Name="academic_year" EntityType="Self.academic_year" Schema="schooldb" store:Type="Tables" />
+          <EntitySet Name="classlevels" EntityType="Self.classlevels" Schema="schooldb" store:Type="Tables" />
           <EntitySet Name="classrooms" EntityType="Self.classrooms" Schema="schooldb" store:Type="Tables" />
           <EntitySet Name="registered" EntityType="Self.registered" Schema="schooldb" store:Type="Tables" />
           <EntitySet Name="registered_tag" EntityType="Self.registered_tag" Schema="schooldb" store:Type="Tables" />
@@ -175,6 +195,10 @@
           <EntitySet Name="students" EntityType="Self.students" Schema="schooldb" store:Type="Tables" />
           <EntitySet Name="tagid" EntityType="Self.tagid" Schema="schooldb" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="schooldb" store:Type="Tables" />
+          <AssociationSet Name="fk_classlevel" Association="Self.fk_classlevel">
+            <End Role="classlevels" EntitySet="classlevels" />
+            <End Role="classrooms" EntitySet="classrooms" />
+          </AssociationSet>
           <AssociationSet Name="register_years_academic_id" Association="Self.register_years_academic_id">
             <End Role="academic_year" EntitySet="academic_year" />
             <End Role="registered" EntitySet="registered" />
@@ -206,6 +230,7 @@
       <Schema Namespace="schooldbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="schooldbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="academic_year" EntityType="schooldbModel.academic_year" />
+          <EntitySet Name="classlevels" EntityType="schooldbModel.classlevel" />
           <EntitySet Name="classrooms" EntityType="schooldbModel.classroom" />
           <EntitySet Name="registereds" EntityType="schooldbModel.registered" />
           <EntitySet Name="registered_tag" EntityType="schooldbModel.registered_tag" />
@@ -216,6 +241,10 @@
           <AssociationSet Name="register_years_academic_id" Association="schooldbModel.register_years_academic_id">
             <End Role="academic_year" EntitySet="academic_year" />
             <End Role="registered" EntitySet="registereds" />
+          </AssociationSet>
+          <AssociationSet Name="fk_classlevel" Association="schooldbModel.fk_classlevel">
+            <End Role="classlevel" EntitySet="classlevels" />
+            <End Role="classroom" EntitySet="classrooms" />
           </AssociationSet>
           <AssociationSet Name="register_years_classrooms_id" Association="schooldbModel.register_years_classrooms_id">
             <End Role="classroom" EntitySet="classrooms" />
@@ -250,15 +279,24 @@
           <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_academic_id" FromRole="academic_year" ToRole="registered" />
         </EntityType>
+        <EntityType Name="classlevel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="SByte" Nullable="false" />
+          <Property Name="ClassLevel1" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="classrooms" Relationship="schooldbModel.fk_classlevel" FromRole="classlevel" ToRole="classroom" />
+        </EntityType>
         <EntityType Name="classroom">
           <Key>
             <PropertyRef Name="ClassID" />
           </Key>
           <Property Name="ClassID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClassName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ClassLevel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClassLevel" Type="SByte" Nullable="false" />
           <Property Name="ClassRegisterDate" Type="DateTime" Nullable="false" />
           <Property Name="ClassRoomEnable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="classlevel1" Relationship="schooldbModel.fk_classlevel" FromRole="classroom" ToRole="classlevel" />
           <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_classrooms_id" FromRole="classroom" ToRole="registered" />
         </EntityType>
         <EntityType Name="registered">
@@ -351,6 +389,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_classlevel">
+          <End Type="schooldbModel.classlevel" Role="classlevel" Multiplicity="1" />
+          <End Type="schooldbModel.classroom" Role="classroom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classlevel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="classroom">
+              <PropertyRef Name="ClassLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="register_years_classrooms_id">
           <End Type="schooldbModel.classroom" Role="classroom" Multiplicity="1" />
           <End Type="schooldbModel.registered" Role="registered" Multiplicity="*" />
@@ -425,6 +475,14 @@
                 <ScalarProperty Name="years_finish" ColumnName="years_finish" />
                 <ScalarProperty Name="years_start" ColumnName="years_start" />
                 <ScalarProperty Name="years_name" ColumnName="years_name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="classlevels">
+            <EntityTypeMapping TypeName="schooldbModel.classlevel">
+              <MappingFragment StoreEntitySet="classlevels">
+                <ScalarProperty Name="ClassLevel1" ColumnName="ClassLevel" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

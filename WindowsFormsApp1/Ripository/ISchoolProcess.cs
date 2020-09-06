@@ -13,7 +13,7 @@ namespace SchoolApp
         /// </summary>
         /// <param name="level">مقطع تحصیلی</param>
         /// <returns></returns>
-        Task<List<classroom>> GetClassRoomByLevel(string level);
+        Task<List<classroom>> GetClassRoomByLevel(SByte level);
         /// <summary>
         /// ذخیره کلاس درس
         /// </summary>
@@ -22,23 +22,30 @@ namespace SchoolApp
         Task<bool> ClassRoomCRUD(classroom classroomItem);
 
         Task<classroom> GetClassroomByClassId(int classID);
+        /// <summary>
+        /// لیست مقاطع تحصیلی
+        /// </summary>
+        /// <returns></returns>
+        Task<List<classlevel>> ListLevelClass();
+ 
     }
 
     public class SchoolProcess : ISchoolProcess
     {
+
         private schooldbEntities db;
         public SchoolProcess(schooldbEntities db)
         {
             this.db = db;
         }
-        public async Task<List<classroom>> GetClassRoomByLevel(string level)
+        public async Task<List<classroom>> GetClassRoomByLevel(SByte level)
         {
             return await db.classrooms.Where(x => x.ClassLevel == level).ToListAsync();
         }
 
         public async Task<bool> ClassRoomCRUD(classroom classroomItem)
         {
-            if (classroomItem.ClassID >0)
+            if (classroomItem.ClassID > 0)
             {
                 try
                 {
@@ -46,16 +53,16 @@ namespace SchoolApp
                     var result = await db.SaveChangesAsync();
                     return Convert.ToBoolean(result);
                 }
-                catch 
+                catch
                 {
                     return false;
                 }
-             
+
             }
             try
             {
                 db.classrooms.Add(classroomItem);
-                var result =await db.SaveChangesAsync();
+                var result = await db.SaveChangesAsync();
                 return Convert.ToBoolean(result);
             }
             catch
@@ -68,5 +75,12 @@ namespace SchoolApp
         {
             return await db.classrooms.FindAsync(classID);
         }
+
+        public async Task<List<classlevel>> ListLevelClass()
+        {
+            return await db.classlevels.OrderBy(x=>x.ID).ToListAsync();
+        }
     }
 }
+
+
