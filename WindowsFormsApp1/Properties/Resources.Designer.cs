@@ -411,6 +411,25 @@ namespace SchoolApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE DATABASE  IF NOT EXISTS `schooldb` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_persian_ci */;
+        ///USE `schooldb`;
+        ///-- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
+        ///--
+        ///-- Host: localhost    Database: schooldb
+        ///-- ------------------------------------------------------
+        ///-- Server version	8.0.11
+        ///
+        ////*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+        ////*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+        ////*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string school {
+            get {
+                return ResourceManager.GetString("school", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap today_32x32 {

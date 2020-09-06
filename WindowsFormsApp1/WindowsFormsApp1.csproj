@@ -219,6 +219,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\school.sql" />
     <None Include="Resources\usergroup_16x16.png" />
     <None Include="Resources\usergroup_32x32.png" />
     <None Include="Resources\today_32x32.png" />
