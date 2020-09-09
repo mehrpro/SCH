@@ -31,6 +31,12 @@
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
             this.backstageViewClientControl2 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.FinishDateEdit = new DevExpress.XtraEditors.DateEdit();
+            this.StartDateEdit = new DevExpress.XtraEditors.DateEdit();
+            this.txtYearName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -39,14 +45,9 @@
             this.txtSchoolTel = new DevExpress.XtraEditors.TextEdit();
             this.txtSchoolAddress = new DevExpress.XtraEditors.TextEdit();
             this.txtSchoolName = new DevExpress.XtraEditors.TextEdit();
-            this.backstageViewClientControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
-            this.backstageViewClientControl3 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
-            this.menuTabItemSoftWare = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
             this.menuTabItemSchool = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
-            this.menuTabItemBackup = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
             this.btnNewCart = new DevExpress.XtraBars.BarButtonItem();
             this.btnAccessCard = new DevExpress.XtraBars.BarButtonItem();
-            this.btnAcademicYears = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barCheckItem1 = new DevExpress.XtraBars.BarCheckItem();
@@ -63,6 +64,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
             this.backstageViewControl1.SuspendLayout();
             this.backstageViewClientControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FinishDateEdit.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FinishDateEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartDateEdit.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartDateEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtYearName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSchoolTel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSchoolAddress.Properties)).BeginInit();
@@ -77,7 +83,6 @@
             this.ribbonControl1.ExpandCollapseItem,
             this.btnNewCart,
             this.btnAccessCard,
-            this.btnAcademicYears,
             this.barButtonItem4,
             this.barButtonItem5,
             this.barCheckItem1,
@@ -98,21 +103,23 @@
             // backstageViewControl1
             // 
             this.backstageViewControl1.Controls.Add(this.backstageViewClientControl2);
-            this.backstageViewControl1.Controls.Add(this.backstageViewClientControl1);
-            this.backstageViewControl1.Controls.Add(this.backstageViewClientControl3);
-            this.backstageViewControl1.Items.Add(this.menuTabItemSoftWare);
             this.backstageViewControl1.Items.Add(this.menuTabItemSchool);
-            this.backstageViewControl1.Items.Add(this.menuTabItemBackup);
-            this.backstageViewControl1.Location = new System.Drawing.Point(164, 210);
+            this.backstageViewControl1.Location = new System.Drawing.Point(129, 193);
             this.backstageViewControl1.Name = "backstageViewControl1";
             this.backstageViewControl1.OwnerControl = this.ribbonControl1;
             this.backstageViewControl1.SelectedTab = this.menuTabItemSchool;
-            this.backstageViewControl1.SelectedTabIndex = 1;
-            this.backstageViewControl1.Size = new System.Drawing.Size(695, 406);
+            this.backstageViewControl1.SelectedTabIndex = 0;
+            this.backstageViewControl1.Size = new System.Drawing.Size(785, 453);
             this.backstageViewControl1.TabIndex = 1;
             // 
             // backstageViewClientControl2
             // 
+            this.backstageViewClientControl2.Controls.Add(this.labelControl4);
+            this.backstageViewClientControl2.Controls.Add(this.FinishDateEdit);
+            this.backstageViewClientControl2.Controls.Add(this.StartDateEdit);
+            this.backstageViewClientControl2.Controls.Add(this.txtYearName);
+            this.backstageViewClientControl2.Controls.Add(this.labelControl6);
+            this.backstageViewClientControl2.Controls.Add(this.labelControl7);
             this.backstageViewClientControl2.Controls.Add(this.pictureEdit1);
             this.backstageViewClientControl2.Controls.Add(this.btnSave);
             this.backstageViewClientControl2.Controls.Add(this.labelControl3);
@@ -123,14 +130,85 @@
             this.backstageViewClientControl2.Controls.Add(this.txtSchoolName);
             this.backstageViewClientControl2.Location = new System.Drawing.Point(1, 63);
             this.backstageViewClientControl2.Name = "backstageViewClientControl2";
-            this.backstageViewClientControl2.Size = new System.Drawing.Size(445, 342);
+            this.backstageViewClientControl2.Size = new System.Drawing.Size(652, 389);
             this.backstageViewClientControl2.TabIndex = 2;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl4.Location = new System.Drawing.Point(533, 26);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(62, 20);
+            this.labelControl4.TabIndex = 16;
+            this.labelControl4.Text = "سال تحصیلی";
+            // 
+            // FinishDateEdit
+            // 
+            this.FinishDateEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.FinishDateEdit.EditValue = null;
+            this.FinishDateEdit.Location = new System.Drawing.Point(379, 87);
+            this.FinishDateEdit.Name = "FinishDateEdit";
+            this.FinishDateEdit.Parmida_ActivePlusMultiKeys = false;
+            this.FinishDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.FinishDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.FinishDateEdit.Properties.Parmida_CheckDateOnLeave = false;
+            this.FinishDateEdit.Properties.Parmida_CheckEmptyFillDateOnEnter = false;
+            this.FinishDateEdit.Properties.ReadOnly = true;
+            this.FinishDateEdit.Size = new System.Drawing.Size(148, 26);
+            this.FinishDateEdit.TabIndex = 21;
+            // 
+            // StartDateEdit
+            // 
+            this.StartDateEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.StartDateEdit.EditValue = null;
+            this.StartDateEdit.Location = new System.Drawing.Point(379, 55);
+            this.StartDateEdit.Name = "StartDateEdit";
+            this.StartDateEdit.Parmida_ActivePlusMultiKeys = false;
+            this.StartDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.StartDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.StartDateEdit.Properties.Parmida_CheckDateOnLeave = false;
+            this.StartDateEdit.Properties.Parmida_CheckEmptyFillDateOnEnter = false;
+            this.StartDateEdit.Properties.ReadOnly = true;
+            this.StartDateEdit.Size = new System.Drawing.Size(148, 26);
+            this.StartDateEdit.TabIndex = 20;
+            // 
+            // txtYearName
+            // 
+            this.txtYearName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtYearName.Location = new System.Drawing.Point(379, 23);
+            this.txtYearName.Name = "txtYearName";
+            this.txtYearName.Parmida_ActivePlusMultiKeys = false;
+            this.txtYearName.Properties.ReadOnly = true;
+            this.txtYearName.Size = new System.Drawing.Size(148, 26);
+            this.txtYearName.TabIndex = 19;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl6.Location = new System.Drawing.Point(533, 62);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(84, 20);
+            this.labelControl6.TabIndex = 17;
+            this.labelControl6.Text = "آغاز سال تحصیلی";
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl7.Location = new System.Drawing.Point(533, 88);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(87, 20);
+            this.labelControl7.TabIndex = 18;
+            this.labelControl7.Text = "پایان سال تحصیلی";
             // 
             // pictureEdit1
             // 
             this.pictureEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureEdit1.EditValue = global::SchoolApp.Properties.Resources.sama;
-            this.pictureEdit1.Location = new System.Drawing.Point(14, 177);
+            this.pictureEdit1.Location = new System.Drawing.Point(14, 215);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Parmida_ActivePlusMultiKeys = false;
             this.pictureEdit1.Properties.ReadOnly = true;
@@ -141,8 +219,9 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.ImageOptions.Image = global::SchoolApp.Properties.Resources.save_32x32;
-            this.btnSave.Location = new System.Drawing.Point(34, 122);
+            this.btnSave.Location = new System.Drawing.Point(428, 215);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(99, 40);
             this.btnSave.TabIndex = 7;
@@ -152,7 +231,7 @@
             // labelControl3
             // 
             this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl3.Location = new System.Drawing.Point(364, 92);
+            this.labelControl3.Location = new System.Drawing.Point(539, 185);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(59, 20);
             this.labelControl3.TabIndex = 1;
@@ -161,7 +240,7 @@
             // labelControl2
             // 
             this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl2.Location = new System.Drawing.Point(364, 60);
+            this.labelControl2.Location = new System.Drawing.Point(539, 153);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(67, 20);
             this.labelControl2.TabIndex = 1;
@@ -170,7 +249,7 @@
             // labelControl1
             // 
             this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl1.Location = new System.Drawing.Point(364, 28);
+            this.labelControl1.Location = new System.Drawing.Point(539, 121);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(51, 20);
             this.labelControl1.TabIndex = 1;
@@ -178,61 +257,37 @@
             // 
             // txtSchoolTel
             // 
-            this.txtSchoolTel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSchoolTel.Location = new System.Drawing.Point(34, 90);
+            this.txtSchoolTel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSchoolTel.Location = new System.Drawing.Point(253, 183);
             this.txtSchoolTel.Name = "txtSchoolTel";
             this.txtSchoolTel.Parmida_ActivePlusMultiKeys = false;
             this.txtSchoolTel.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSchoolTel.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtSchoolTel.Size = new System.Drawing.Size(318, 26);
+            this.txtSchoolTel.Size = new System.Drawing.Size(274, 26);
             this.txtSchoolTel.TabIndex = 0;
             // 
             // txtSchoolAddress
             // 
-            this.txtSchoolAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSchoolAddress.Location = new System.Drawing.Point(34, 58);
+            this.txtSchoolAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSchoolAddress.Location = new System.Drawing.Point(253, 151);
             this.txtSchoolAddress.Name = "txtSchoolAddress";
             this.txtSchoolAddress.Parmida_ActivePlusMultiKeys = false;
             this.txtSchoolAddress.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSchoolAddress.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtSchoolAddress.Size = new System.Drawing.Size(318, 26);
+            this.txtSchoolAddress.Size = new System.Drawing.Size(274, 26);
             this.txtSchoolAddress.TabIndex = 0;
             // 
             // txtSchoolName
             // 
-            this.txtSchoolName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSchoolName.Location = new System.Drawing.Point(34, 26);
+            this.txtSchoolName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSchoolName.Location = new System.Drawing.Point(253, 119);
             this.txtSchoolName.MenuManager = this.ribbonControl1;
             this.txtSchoolName.Name = "txtSchoolName";
             this.txtSchoolName.Parmida_ActivePlusMultiKeys = false;
             this.txtSchoolName.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSchoolName.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.txtSchoolName.Size = new System.Drawing.Size(318, 26);
+            this.txtSchoolName.Size = new System.Drawing.Size(274, 26);
             this.txtSchoolName.TabIndex = 0;
-            // 
-            // backstageViewClientControl1
-            // 
-            this.backstageViewClientControl1.Location = new System.Drawing.Point(236, 62);
-            this.backstageViewClientControl1.Name = "backstageViewClientControl1";
-            this.backstageViewClientControl1.Size = new System.Drawing.Size(459, 344);
-            this.backstageViewClientControl1.TabIndex = 1;
-            // 
-            // backstageViewClientControl3
-            // 
-            this.backstageViewClientControl3.Location = new System.Drawing.Point(236, 62);
-            this.backstageViewClientControl3.Name = "backstageViewClientControl3";
-            this.backstageViewClientControl3.Size = new System.Drawing.Size(459, 344);
-            this.backstageViewClientControl3.TabIndex = 3;
-            // 
-            // menuTabItemSoftWare
-            // 
-            this.menuTabItemSoftWare.Caption = "تنظیمات نرم افزار";
-            this.menuTabItemSoftWare.ContentControl = this.backstageViewClientControl1;
-            this.menuTabItemSoftWare.ImageOptions.ItemNormal.Image = global::SchoolApp.Properties.Resources.operatingsystem_32x32;
-            this.menuTabItemSoftWare.Name = "menuTabItemSoftWare";
             // 
             // menuTabItemSchool
             // 
@@ -241,14 +296,6 @@
             this.menuTabItemSchool.ImageOptions.ItemNormal.Image = global::SchoolApp.Properties.Resources.home_32x324;
             this.menuTabItemSchool.Name = "menuTabItemSchool";
             this.menuTabItemSchool.Selected = true;
-            this.menuTabItemSchool.SelectedChanged += new DevExpress.XtraBars.Ribbon.BackstageViewItemEventHandler(this.menuTabItemSchool_SelectedChanged);
-            // 
-            // menuTabItemBackup
-            // 
-            this.menuTabItemBackup.Caption = "backstageViewTabItem3";
-            this.menuTabItemBackup.ContentControl = this.backstageViewClientControl3;
-            this.menuTabItemBackup.ImageOptions.ItemNormal.Image = global::SchoolApp.Properties.Resources.managedatasource_32x32;
-            this.menuTabItemBackup.Name = "menuTabItemBackup";
             // 
             // btnNewCart
             // 
@@ -266,15 +313,6 @@
             this.btnAccessCard.ImageOptions.Image = global::SchoolApp.Properties.Resources.contact_16x16;
             this.btnAccessCard.ImageOptions.LargeImage = global::SchoolApp.Properties.Resources.contact_32x32;
             this.btnAccessCard.Name = "btnAccessCard";
-            // 
-            // btnAcademicYears
-            // 
-            this.btnAcademicYears.Caption = "سال تحصیلی";
-            this.btnAcademicYears.Id = 3;
-            this.btnAcademicYears.ImageOptions.Image = global::SchoolApp.Properties.Resources.calendar_16x16;
-            this.btnAcademicYears.ImageOptions.LargeImage = global::SchoolApp.Properties.Resources.calendar_32x32;
-            this.btnAcademicYears.Name = "btnAcademicYears";
-            this.btnAcademicYears.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAcademicYears_ItemClick);
             // 
             // barButtonItem4
             // 
@@ -328,6 +366,7 @@
             this.barButtonItem1.ImageOptions.Image = global::SchoolApp.Properties.Resources.usergroup_16x16;
             this.barButtonItem1.ImageOptions.LargeImage = global::SchoolApp.Properties.Resources.usergroup_32x32;
             this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // ribGroupFirstInformation
             // 
@@ -351,7 +390,6 @@
             // ribSchoolPropertes
             // 
             this.ribSchoolPropertes.ItemLinks.Add(this.btnClassRoom);
-            this.ribSchoolPropertes.ItemLinks.Add(this.btnAcademicYears);
             this.ribSchoolPropertes.Name = "ribSchoolPropertes";
             this.ribSchoolPropertes.Text = "مدیریت مدرسه";
             // 
@@ -377,11 +415,17 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "مدراس سما";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();
             this.backstageViewControl1.ResumeLayout(false);
             this.backstageViewClientControl2.ResumeLayout(false);
             this.backstageViewClientControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FinishDateEdit.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FinishDateEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartDateEdit.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartDateEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtYearName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSchoolTel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSchoolAddress.Properties)).EndInit();
@@ -398,19 +442,14 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribTagCard;
         private DevExpress.XtraBars.BarButtonItem btnNewCart;
         private DevExpress.XtraBars.BarButtonItem btnAccessCard;
-        private DevExpress.XtraBars.BarButtonItem btnAcademicYears;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.BarCheckItem barCheckItem1;
         private DevExpress.XtraBars.SkinBarSubItem skinBarSubItem1;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
         private DevExpress.XtraBars.Ribbon.BackstageViewControl backstageViewControl1;
-        private DevExpress.XtraBars.Ribbon.BackstageViewClientControl backstageViewClientControl1;
         private DevExpress.XtraBars.Ribbon.BackstageViewClientControl backstageViewClientControl2;
-        private DevExpress.XtraBars.Ribbon.BackstageViewClientControl backstageViewClientControl3;
-        private DevExpress.XtraBars.Ribbon.BackstageViewTabItem menuTabItemSoftWare;
         private DevExpress.XtraBars.Ribbon.BackstageViewTabItem menuTabItemSchool;
-        private DevExpress.XtraBars.Ribbon.BackstageViewTabItem menuTabItemBackup;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtSchoolName;
         private DevExpress.XtraEditors.LabelControl labelControl3;
@@ -424,5 +463,11 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.DateEdit FinishDateEdit;
+        private DevExpress.XtraEditors.DateEdit StartDateEdit;
+        private DevExpress.XtraEditors.TextEdit txtYearName;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
     }
 }

@@ -9,7 +9,8 @@
 
         public static string NoSuccessLogin { get; set; } = "شناسه کاربری یا رمز ورود شما اشتباه است ";
 
-
+        public static string NoComplateForm { get; set; } = "مقادیر فرم را کامل کنید";
+        public static  int UserID { get; set;  } 
 
 
     }

@@ -26,7 +26,7 @@ namespace SchoolApp
         public string LName { get; set; }
         public string FullName { get; set; }
         public string StudentCode { get; set; }
-        public int StudentNatinalCode { get; set; }
+        public string StudentNatinalCode { get; set; }
         public string FatherName { get; set; }
         public string MotherName { get; set; }
         public string HomePhone { get; set; }
@@ -34,8 +34,8 @@ namespace SchoolApp
         public string MotherPhone { get; set; }
         public string SMS { get; set; }
         public Nullable<System.DateTime> BrithDate { get; set; }
-        public System.DateTime RegDate { get; set; }
-        public bool enabled { get; set; }
+        public Nullable<System.DateTime> RegDate { get; set; }
+        public Nullable<bool> enabled { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registered> registereds { get; set; }

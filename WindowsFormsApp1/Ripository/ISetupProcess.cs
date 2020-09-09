@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,6 +32,11 @@ namespace SchoolApp
         /// <param name="pass">رمزعبور</param>
         /// <returns></returns>
         Task<bool> SuccessAccount(string user, string pass);
+        /// <summary>
+        /// بررسی سال تحصیلی 
+        /// </summary>
+        /// <returns></returns>
+        Task<academic_year> AcadamicYears();
     }
 
     public class SetupProcess : ISetupProcess
@@ -79,7 +85,7 @@ namespace SchoolApp
             try
             {
                 db.Entry(schoolName).State = EntityState.Modified;
-                var result =await db.SaveChangesAsync();
+                var result = await db.SaveChangesAsync();
                 return Convert.ToBoolean(result);
             }
             catch
@@ -95,6 +101,31 @@ namespace SchoolApp
                 return false;
             }
             return true;
+        }
+
+        public async Task<academic_year> AcadamicYears()
+        {
+            var pc = new PersianCalendar();
+            var start_years = pc.GetYear(DateTime.Now);
+            var finish_years = start_years + 1;
+            var years_name = $"{start_years}-{finish_years}";
+            var start = new DateTime(start_years, 7, 1, pc);
+            var finish = new DateTime(finish_years, 6, 31, pc);
+            var qry = await db.academic_year.SingleOrDefaultAsync(x => x.years_start == start);
+            if (qry == null)
+            {
+                var newAcadamic = new academic_year()
+                {
+                    years_start = start,
+                    years_finish = finish,
+                    years_name = years_name,
+                    enabled = true,
+                };
+                db.academic_year.Add(newAcadamic);
+                db.SaveChangesAsync();
+                return newAcadamic;
+            }
+            return qry;
         }
     }
 }

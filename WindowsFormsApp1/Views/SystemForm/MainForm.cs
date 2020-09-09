@@ -16,23 +16,19 @@ namespace SchoolApp.Views.SystemForm
     {
         private ISetupProcess setupProcess;
         private school selectSchool;
+        private academic_year years;
+
         public MainForm(ISetupProcess setupProcess)
         {
             this.setupProcess = setupProcess;
             InitializeComponent();
             this.Text = PublicVar.SchoolName;
-       
+            years = new academic_year();
+
         }
 
 
 
-        private async void menuTabItemSchool_SelectedChanged(object sender, DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs e)
-        {
-            selectSchool = await setupProcess.GetSchoolInformation();
-            txtSchoolName.EditValue = selectSchool.SchoolName;
-            txtSchoolAddress.EditValue = selectSchool.SchoolAddress;
-            txtSchoolTel.EditValue = selectSchool.SchoolTel;
-        }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
@@ -78,9 +74,29 @@ namespace SchoolApp.Views.SystemForm
 
         private void btnAcademicYears_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+
+        }
+
+
+
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            selectSchool = await setupProcess.GetSchoolInformation();
+            txtSchoolName.EditValue = selectSchool.SchoolName;
+            txtSchoolAddress.EditValue = selectSchool.SchoolAddress;
+            txtSchoolTel.EditValue = selectSchool.SchoolTel;
+
+            years = await setupProcess.AcadamicYears();
+            txtYearName.EditValue = years.years_name;
+            StartDateEdit.DateTime = years.years_start;
+            FinishDateEdit.DateTime = years.years_finish;
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
             foreach (Form c in this.MdiChildren) c.Close();
             var container = new StructureMap.Container(new TypeRegistery());
-            var frm = container.GetInstance<AcademicYearsForm>();
+            var frm = container.GetInstance<StudentForm>();
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterParent;

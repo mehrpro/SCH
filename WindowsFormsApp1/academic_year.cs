@@ -24,7 +24,7 @@ namespace SchoolApp
         public string years_name { get; set; }
         public System.DateTime years_start { get; set; }
         public System.DateTime years_finish { get; set; }
-        public sbyte enabled { get; set; }
+        public bool enabled { get; set; }
         public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

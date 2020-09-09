@@ -126,11 +126,11 @@
     <Compile Include="user.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\School_Information\AcademicYearsForm.cs">
+    <Compile Include="Views\School_Information\StudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\School_Information\AcademicYearsForm.Designer.cs">
-      <DependentUpon>AcademicYearsForm.cs</DependentUpon>
+    <Compile Include="Views\School_Information\StudentForm.Designer.cs">
+      <DependentUpon>StudentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\School_Information\FrmAddTagCard.cs">
       <SubType>Form</SubType>
@@ -172,8 +172,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\School_Information\AcademicYearsForm.resx">
-      <DependentUpon>AcademicYearsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\School_Information\StudentForm.resx">
+      <DependentUpon>StudentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\School_Information\FrmAddTagCard.resx">
       <DependentUpon>FrmAddTagCard.cs</DependentUpon>
@@ -219,6 +219,12 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\prev_16x161.png" />
+    <None Include="Resources\cancel_32x323.png" />
+    <None Include="Resources\customer_32x32.png" />
+    <None Include="Resources\user_32x32.png" />
+    <None Include="Resources\save_32x321.png" />
+    <None Include="Resources\calendar_32x322.png" />
     <None Include="Resources\school.sql" />
     <None Include="Resources\usergroup_16x16.png" />
     <None Include="Resources\usergroup_32x32.png" />

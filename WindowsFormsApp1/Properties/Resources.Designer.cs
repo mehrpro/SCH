@@ -173,6 +173,16 @@ namespace SchoolApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap calendar_32x322 {
+            get {
+                object obj = ResourceManager.GetObject("calendar_32x322", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cancel_32x32 {
             get {
                 object obj = ResourceManager.GetObject("cancel_32x32", resourceCulture);
@@ -196,6 +206,16 @@ namespace SchoolApp.Properties {
         internal static System.Drawing.Bitmap cancel_32x322 {
             get {
                 object obj = ResourceManager.GetObject("cancel_32x322", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cancel_32x323 {
+            get {
+                object obj = ResourceManager.GetObject("cancel_32x323", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +266,16 @@ namespace SchoolApp.Properties {
         internal static System.Drawing.Bitmap convert_32x32 {
             get {
                 object obj = ResourceManager.GetObject("convert_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap customer_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("customer_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,6 +383,16 @@ namespace SchoolApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap prev_16x161 {
+            get {
+                object obj = ResourceManager.GetObject("prev_16x161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap refresh_32x32 {
             get {
                 object obj = ResourceManager.GetObject("refresh_32x32", resourceCulture);
@@ -403,6 +443,16 @@ namespace SchoolApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap save_32x321 {
+            get {
+                object obj = ResourceManager.GetObject("save_32x321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap saveto_32x32 {
             get {
                 object obj = ResourceManager.GetObject("saveto_32x32", resourceCulture);
@@ -435,6 +485,16 @@ namespace SchoolApp.Properties {
         internal static System.Drawing.Bitmap today_32x32 {
             get {
                 object obj = ResourceManager.GetObject("today_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("user_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

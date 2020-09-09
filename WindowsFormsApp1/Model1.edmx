@@ -13,7 +13,7 @@
           <Property Name="years_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="years_start" Type="date" Nullable="false" />
           <Property Name="years_finish" Type="date" Nullable="false" />
-          <Property Name="enabled" Type="tinyint" Nullable="false" />
+          <Property Name="enabled" Type="bit" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="classlevels">
@@ -67,20 +67,20 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="LName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="FullName" Type="varchar" MaxLength="151" Nullable="false" />
+          <Property Name="FName" Type="varchar" MaxLength="50" />
+          <Property Name="LName" Type="varchar" MaxLength="100" />
+          <Property Name="FullName" Type="varchar" MaxLength="151" />
           <Property Name="StudentCode" Type="varchar" MaxLength="20" />
-          <Property Name="StudentNatinalCode" Type="int" Nullable="false" />
+          <Property Name="StudentNatinalCode" Type="varchar" MaxLength="11" />
           <Property Name="FatherName" Type="varchar" MaxLength="50" />
-          <Property Name="MotherName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MotherName" Type="varchar" MaxLength="50" />
           <Property Name="HomePhone" Type="char" MaxLength="11" />
           <Property Name="FatherPhone" Type="char" MaxLength="11" />
           <Property Name="MotherPhone" Type="char" MaxLength="11" />
           <Property Name="SMS" Type="char" MaxLength="11" />
           <Property Name="BrithDate" Type="date" />
-          <Property Name="RegDate" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="enabled" Type="bool" Nullable="false" />
+          <Property Name="RegDate" Type="datetime" Precision="0" />
+          <Property Name="enabled" Type="bool" />
         </EntityType>
         <EntityType Name="tagid">
           <Key>
@@ -275,7 +275,7 @@
           <Property Name="years_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="years_start" Type="DateTime" Nullable="false" />
           <Property Name="years_finish" Type="DateTime" Nullable="false" />
-          <Property Name="enabled" Type="SByte" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_academic_id" FromRole="academic_year" ToRole="registered" />
         </EntityType>
@@ -340,20 +340,20 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="151" FixedLength="false" Unicode="false" />
+          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="151" FixedLength="false" Unicode="false" />
           <Property Name="StudentCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="StudentNatinalCode" Type="Int32" Nullable="false" />
+          <Property Name="StudentNatinalCode" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MotherName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HomePhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="FatherPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="MotherPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="SMS" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="BrithDate" Type="DateTime" />
-          <Property Name="RegDate" Type="DateTime" Nullable="false" />
-          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <Property Name="RegDate" Type="DateTime" />
+          <Property Name="enabled" Type="Boolean" />
           <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_students" FromRole="student" ToRole="registered" />
           <NavigationProperty Name="registered_tag" Relationship="schooldbModel.registeredTag_student_students_id" FromRole="student" ToRole="registered_tag" />
         </EntityType>
