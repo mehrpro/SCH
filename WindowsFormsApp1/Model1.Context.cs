@@ -28,11 +28,11 @@ namespace SchoolApp
         public virtual DbSet<academic_year> academic_year { get; set; }
         public virtual DbSet<classlevel> classlevels { get; set; }
         public virtual DbSet<classroom> classrooms { get; set; }
-        public virtual DbSet<registered> registereds { get; set; }
         public virtual DbSet<registered_tag> registered_tag { get; set; }
         public virtual DbSet<school> schools { get; set; }
         public virtual DbSet<student> students { get; set; }
         public virtual DbSet<tagid> tagids { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<registered> registereds { get; set; }
     }
 }

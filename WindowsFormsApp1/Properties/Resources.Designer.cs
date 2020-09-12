@@ -403,6 +403,26 @@ namespace SchoolApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap reviewallowuserstoeditranges_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("reviewallowuserstoeditranges_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reviewallowuserstoeditranges_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("reviewallowuserstoeditranges_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rfid_card {
             get {
                 object obj = ResourceManager.GetObject("rfid-card", resourceCulture);

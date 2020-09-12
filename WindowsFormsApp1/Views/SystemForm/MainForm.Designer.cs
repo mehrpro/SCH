@@ -56,6 +56,7 @@
             this.btnClassRoom = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnStudentClassRoom = new DevExpress.XtraBars.BarButtonItem();
             this.ribGroupFirstInformation = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribTagCard = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribSchoolPropertes = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -90,10 +91,11 @@
             this.skinDropDownButtonItem1,
             this.btnClassRoom,
             this.barButtonItem6,
-            this.barButtonItem1});
+            this.barButtonItem1,
+            this.btnStudentClassRoom});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ribbonControl1.MaxItemId = 12;
+            this.ribbonControl1.MaxItemId = 13;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribGroupFirstInformation});
@@ -368,6 +370,15 @@
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
+            // btnStudentClassRoom
+            // 
+            this.btnStudentClassRoom.Caption = "کلاس بندی";
+            this.btnStudentClassRoom.Id = 12;
+            this.btnStudentClassRoom.ImageOptions.Image = global::SchoolApp.Properties.Resources.reviewallowuserstoeditranges_16x16;
+            this.btnStudentClassRoom.ImageOptions.LargeImage = global::SchoolApp.Properties.Resources.reviewallowuserstoeditranges_32x32;
+            this.btnStudentClassRoom.Name = "btnStudentClassRoom";
+            this.btnStudentClassRoom.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnStudentClassRoom_ItemClick);
+            // 
             // ribGroupFirstInformation
             // 
             this.ribGroupFirstInformation.Appearance.Options.UseTextOptions = true;
@@ -390,6 +401,7 @@
             // ribSchoolPropertes
             // 
             this.ribSchoolPropertes.ItemLinks.Add(this.btnClassRoom);
+            this.ribSchoolPropertes.ItemLinks.Add(this.btnStudentClassRoom);
             this.ribSchoolPropertes.Name = "ribSchoolPropertes";
             this.ribSchoolPropertes.Text = "مدیریت مدرسه";
             // 
@@ -469,5 +481,6 @@
         private DevExpress.XtraEditors.TextEdit txtYearName;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraBars.BarButtonItem btnStudentClassRoom;
     }
 }

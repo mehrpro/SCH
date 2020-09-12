@@ -43,7 +43,30 @@ namespace SchoolApp
         /// <param name="id">شناسه</param>
         /// <returns></returns>
         Task<student> GetStudentById(long id);
+        /// <summary>
+        /// لیست کلاس های فعال
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ViewList_ClassRoom>> GetAllClassRoomByLevel();
+        /// <summary>
+        /// لیست دانش آموزان مدرسه
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ViewList_Student>> GetAllStudentForComboBox();
 
+        /// <summary>
+        /// ثبت دانش آموز در کلاس درس
+        /// </summary>
+        /// <param name="studentRegistered">شی</param>
+        /// <returns></returns>
+        Task<bool> AppendRegisterdStudent(registered studentRegistered);
+
+        /// <summary>
+        /// لیست دانش آموزان ثبت شده در هر کلاس
+        /// </summary>
+        /// <param name="classroomId">کلاس درس</param>
+        /// <returns></returns>
+        Task<List<registered>> GetRegisterListByClassRoomId(byte classroomId);
     }
 
     public class SchoolProcess : ISchoolProcess
@@ -133,6 +156,90 @@ namespace SchoolApp
         {
             return await db.students.FindAsync(id);
         }
+
+        public async Task<List<ViewList_ClassRoom>> GetAllClassRoomByLevel()
+        {
+            var qry = await db.classrooms.ToListAsync();
+            var list = new List<ViewList_ClassRoom>();
+            foreach (var item in qry)
+            {
+                list.Add(new ViewList_ClassRoom()
+                {
+                    شناسه_کلاس = item.ClassID,
+                    مقطع_تحصیلی = item.classlevel1.ClassLevel1,
+                    نام_کلاس = item.ClassName,
+                });
+            }
+
+            return list;
+        }
+
+        public async Task<List<ViewList_Student>> GetAllStudentForComboBox()
+        {
+            var qry = await db.students.ToListAsync();
+            var list = new List<ViewList_Student>();
+            foreach (var student in qry)
+            {
+                var item = new ViewList_Student();
+                item.شناسه = student.ID;
+                item.نام = student.FullName;
+                item.کدملی = student.StudentNatinalCode;
+                item.متولد = student.BrithDate.Value.ConvertDateToPersian();
+                item.نام_پدر = student.FatherName;
+                list.Add(item);
+            }
+
+            return list;
+        }
+
+        public async Task<bool> AppendRegisterdStudent(registered studentRegistered)
+        {
+            if (studentRegistered.id > 0)
+            {
+                try
+                {
+                    db.Entry(studentRegistered).State = EntityState.Modified;
+                    var result = await db.SaveChangesAsync();
+                    return Convert.ToBoolean(result);
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            try
+            {
+                db.registereds.Add(studentRegistered);
+                var result = await db.SaveChangesAsync();
+                return Convert.ToBoolean(result);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<registered>> GetRegisterListByClassRoomId(byte classroomId)
+        {
+            var qry = await db.registereds.Where(x => x.class_fk == classroomId).ToListAsync();
+            return qry;
+        }
+    }
+
+    public class ViewList_ClassRoom
+    {
+        public byte شناسه_کلاس { get; set; }
+        public string مقطع_تحصیلی { get; set; }
+        public string نام_کلاس { get; set; }
+    }
+
+    public class ViewList_Student
+    {
+        public long شناسه { get; set; }
+        public string   نام { get; set; }
+        public string کدملی { get; set; }
+        public string  متولد { get; set; }
+        public string نام_پدر { get; set; }
     }
 }
 

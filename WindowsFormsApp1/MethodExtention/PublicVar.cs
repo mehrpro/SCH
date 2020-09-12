@@ -11,6 +11,18 @@
 
         public static string NoComplateForm { get; set; } = "مقادیر فرم را کامل کنید";
         public static  int UserID { get; set;  } 
+        /// <summary>
+        /// شناسه سال تحصیلی
+        /// </summary>
+        public static int AcademicYearsID { get; set; }
+        /// <summary>
+        /// نام سال تحصیلی
+        /// </summary>
+        public static string YearsName { get; set; }
+        /// <summary>
+        /// شناسه مدررسه
+        /// </summary>
+        public static byte schoolid { get; set; }
 
 
     }

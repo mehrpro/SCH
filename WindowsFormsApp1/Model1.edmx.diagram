@@ -8,19 +8,19 @@
         <EntityTypeShape EntityType="schooldbModel.academic_year" Width="1.5" PointX="3.75" PointY="8.75" />
         <EntityTypeShape EntityType="schooldbModel.classlevel" Width="1.5" PointX="1.5" PointY="12.25" />
         <EntityTypeShape EntityType="schooldbModel.classroom" Width="1.5" PointX="3.75" PointY="11.875" />
-        <EntityTypeShape EntityType="schooldbModel.registered" Width="1.5" PointX="6" PointY="4.125" />
         <EntityTypeShape EntityType="schooldbModel.registered_tag" Width="1.5" PointX="3" PointY="4.5" />
         <EntityTypeShape EntityType="schooldbModel.school" Width="1.5" PointX="3.75" PointY="15" />
         <EntityTypeShape EntityType="schooldbModel.student" Width="1.5" PointX="0.75" PointY="3.5" />
         <EntityTypeShape EntityType="schooldbModel.tagid" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="schooldbModel.user" Width="1.5" PointX="5.75" PointY="8.375" />
-        <AssociationConnector Association="schooldbModel.register_years_academic_id" />
         <AssociationConnector Association="schooldbModel.fk_classlevel" />
+        <AssociationConnector Association="schooldbModel.registeredTag_student_students_id" />
+        <AssociationConnector Association="schooldbModel.registeredTag_tagid_tagid_id" />
+        <EntityTypeShape EntityType="schooldbModel.registered" Width="1.5" PointX="8" PointY="8.75" />
+        <AssociationConnector Association="schooldbModel.register_years_academic_id" />
         <AssociationConnector Association="schooldbModel.register_years_classrooms_id" />
         <AssociationConnector Association="schooldbModel.register_years_schools_id" />
         <AssociationConnector Association="schooldbModel.register_years_students" />
-        <AssociationConnector Association="schooldbModel.registeredTag_student_students_id" />
-        <AssociationConnector Association="schooldbModel.registeredTag_tagid_tagid_id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

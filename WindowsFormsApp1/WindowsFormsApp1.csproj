@@ -86,6 +86,7 @@
     <Compile Include="classroom.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MethodExtention\PersianClass.cs" />
     <Compile Include="MethodExtention\PublicVar.cs" />
     <Compile Include="MethodExtention\TypeRegistery.cs" />
     <Compile Include="Model1.Context.cs">
@@ -144,6 +145,12 @@
     <Compile Include="Views\School_Information\FrmClassRoom.Designer.cs">
       <DependentUpon>FrmClassRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\School_Information\StudentClassRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\School_Information\StudentClassRoom.Designer.cs">
+      <DependentUpon>StudentClassRoom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SystemForm\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\School_Information\FrmClassRoom.resx">
       <DependentUpon>FrmClassRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\School_Information\StudentClassRoom.resx">
+      <DependentUpon>StudentClassRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SystemForm\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -219,6 +229,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\reviewallowuserstoeditranges_16x16.png" />
+    <None Include="Resources\reviewallowuserstoeditranges_32x32.png" />
     <None Include="Resources\prev_16x161.png" />
     <None Include="Resources\cancel_32x323.png" />
     <None Include="Resources\customer_32x32.png" />

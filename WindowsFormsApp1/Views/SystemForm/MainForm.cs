@@ -85,11 +85,15 @@ namespace SchoolApp.Views.SystemForm
             txtSchoolName.EditValue = selectSchool.SchoolName;
             txtSchoolAddress.EditValue = selectSchool.SchoolAddress;
             txtSchoolTel.EditValue = selectSchool.SchoolTel;
+            PublicVar.schoolid = selectSchool.ID;
 
             years = await setupProcess.AcadamicYears();
+            PublicVar.YearsName = years.years_name;
             txtYearName.EditValue = years.years_name;
             StartDateEdit.DateTime = years.years_start;
             FinishDateEdit.DateTime = years.years_finish;
+            PublicVar.AcademicYearsID = years.ID;
+
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -97,6 +101,18 @@ namespace SchoolApp.Views.SystemForm
             foreach (Form c in this.MdiChildren) c.Close();
             var container = new StructureMap.Container(new TypeRegistery());
             var frm = container.GetInstance<StudentForm>();
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void btnStudentClassRoom_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            foreach (Form c in this.MdiChildren) c.Close();
+            var container = new StructureMap.Container(new TypeRegistery());
+            var frm = container.GetInstance<StudentClassRoom>();
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterParent;

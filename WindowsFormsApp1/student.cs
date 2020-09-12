@@ -17,8 +17,8 @@ namespace SchoolApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public student()
         {
-            this.registereds = new HashSet<registered>();
             this.registered_tag = new HashSet<registered_tag>();
+            this.registereds = new HashSet<registered>();
         }
     
         public long ID { get; set; }
@@ -38,8 +38,8 @@ namespace SchoolApp
         public Nullable<bool> enabled { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<registered> registereds { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registered_tag> registered_tag { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<registered> registereds { get; set; }
     }
 }

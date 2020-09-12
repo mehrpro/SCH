@@ -42,7 +42,7 @@
           <Property Name="school_fk" Type="utinyint" Nullable="false" />
           <Property Name="class_fk" Type="utinyint" Nullable="false" />
           <Property Name="student_fk" Type="uint" Nullable="false" />
-          <Property Name="enabled" Type="tinyint" Nullable="false" />
+          <Property Name="enabled" Type="bool" />
         </EntityType>
         <EntityType Name="registered_tag">
           <Key>
@@ -232,19 +232,27 @@
           <EntitySet Name="academic_year" EntityType="schooldbModel.academic_year" />
           <EntitySet Name="classlevels" EntityType="schooldbModel.classlevel" />
           <EntitySet Name="classrooms" EntityType="schooldbModel.classroom" />
-          <EntitySet Name="registereds" EntityType="schooldbModel.registered" />
           <EntitySet Name="registered_tag" EntityType="schooldbModel.registered_tag" />
           <EntitySet Name="schools" EntityType="schooldbModel.school" />
           <EntitySet Name="students" EntityType="schooldbModel.student" />
           <EntitySet Name="tagids" EntityType="schooldbModel.tagid" />
           <EntitySet Name="users" EntityType="schooldbModel.user" />
-          <AssociationSet Name="register_years_academic_id" Association="schooldbModel.register_years_academic_id">
-            <End Role="academic_year" EntitySet="academic_year" />
-            <End Role="registered" EntitySet="registereds" />
-          </AssociationSet>
           <AssociationSet Name="fk_classlevel" Association="schooldbModel.fk_classlevel">
             <End Role="classlevel" EntitySet="classlevels" />
             <End Role="classroom" EntitySet="classrooms" />
+          </AssociationSet>
+          <AssociationSet Name="registeredTag_student_students_id" Association="schooldbModel.registeredTag_student_students_id">
+            <End Role="student" EntitySet="students" />
+            <End Role="registered_tag" EntitySet="registered_tag" />
+          </AssociationSet>
+          <AssociationSet Name="registeredTag_tagid_tagid_id" Association="schooldbModel.registeredTag_tagid_tagid_id">
+            <End Role="tagid" EntitySet="tagids" />
+            <End Role="registered_tag" EntitySet="registered_tag" />
+          </AssociationSet>
+          <EntitySet Name="registereds" EntityType="schooldbModel.registered" />
+          <AssociationSet Name="register_years_academic_id" Association="schooldbModel.register_years_academic_id">
+            <End Role="academic_year" EntitySet="academic_year" />
+            <End Role="registered" EntitySet="registereds" />
           </AssociationSet>
           <AssociationSet Name="register_years_classrooms_id" Association="schooldbModel.register_years_classrooms_id">
             <End Role="classroom" EntitySet="classrooms" />
@@ -257,14 +265,6 @@
           <AssociationSet Name="register_years_students" Association="schooldbModel.register_years_students">
             <End Role="student" EntitySet="students" />
             <End Role="registered" EntitySet="registereds" />
-          </AssociationSet>
-          <AssociationSet Name="registeredTag_student_students_id" Association="schooldbModel.registeredTag_student_students_id">
-            <End Role="student" EntitySet="students" />
-            <End Role="registered_tag" EntitySet="registered_tag" />
-          </AssociationSet>
-          <AssociationSet Name="registeredTag_tagid_tagid_id" Association="schooldbModel.registeredTag_tagid_tagid_id">
-            <End Role="tagid" EntitySet="tagids" />
-            <End Role="registered_tag" EntitySet="registered_tag" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="academic_year">
@@ -298,21 +298,6 @@
           <Property Name="ClassRoomEnable" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="classlevel1" Relationship="schooldbModel.fk_classlevel" FromRole="classroom" ToRole="classlevel" />
           <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_classrooms_id" FromRole="classroom" ToRole="registered" />
-        </EntityType>
-        <EntityType Name="registered">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="years_fk" Type="Int32" Nullable="false" />
-          <Property Name="school_fk" Type="Byte" Nullable="false" />
-          <Property Name="class_fk" Type="Byte" Nullable="false" />
-          <Property Name="student_fk" Type="Int64" Nullable="false" />
-          <Property Name="enabled" Type="SByte" Nullable="false" />
-          <NavigationProperty Name="academic_year" Relationship="schooldbModel.register_years_academic_id" FromRole="registered" ToRole="academic_year" />
-          <NavigationProperty Name="classroom" Relationship="schooldbModel.register_years_classrooms_id" FromRole="registered" ToRole="classroom" />
-          <NavigationProperty Name="school" Relationship="schooldbModel.register_years_schools_id" FromRole="registered" ToRole="school" />
-          <NavigationProperty Name="student" Relationship="schooldbModel.register_years_students" FromRole="registered" ToRole="student" />
         </EntityType>
         <EntityType Name="registered_tag">
           <Key>
@@ -354,8 +339,8 @@
           <Property Name="BrithDate" Type="DateTime" />
           <Property Name="RegDate" Type="DateTime" />
           <Property Name="enabled" Type="Boolean" />
-          <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_students" FromRole="student" ToRole="registered" />
           <NavigationProperty Name="registered_tag" Relationship="schooldbModel.registeredTag_student_students_id" FromRole="student" ToRole="registered_tag" />
+          <NavigationProperty Name="registereds" Relationship="schooldbModel.register_years_students" FromRole="student" ToRole="registered" />
         </EntityType>
         <EntityType Name="tagid">
           <Key>
@@ -377,18 +362,6 @@
           <Property Name="Mobile" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
         </EntityType>
-        <Association Name="register_years_academic_id">
-          <End Type="schooldbModel.academic_year" Role="academic_year" Multiplicity="1" />
-          <End Type="schooldbModel.registered" Role="registered" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="academic_year">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="registered">
-              <PropertyRef Name="years_fk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_classlevel">
           <End Type="schooldbModel.classlevel" Role="classlevel" Multiplicity="1" />
           <End Type="schooldbModel.classroom" Role="classroom" Multiplicity="*" />
@@ -398,6 +371,57 @@
             </Principal>
             <Dependent Role="classroom">
               <PropertyRef Name="ClassLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registeredTag_student_students_id">
+          <End Type="schooldbModel.student" Role="student" Multiplicity="1" />
+          <End Type="schooldbModel.registered_tag" Role="registered_tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered_tag">
+              <PropertyRef Name="student_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registeredTag_tagid_tagid_id">
+          <End Type="schooldbModel.tagid" Role="tagid" Multiplicity="1" />
+          <End Type="schooldbModel.registered_tag" Role="registered_tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tagid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registered_tag">
+              <PropertyRef Name="tagid_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="registered">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="years_fk" Type="Int32" Nullable="false" />
+          <Property Name="school_fk" Type="Byte" Nullable="false" />
+          <Property Name="class_fk" Type="Byte" Nullable="false" />
+          <Property Name="student_fk" Type="Int64" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" />
+          <NavigationProperty Name="academic_year" Relationship="schooldbModel.register_years_academic_id" FromRole="registered" ToRole="academic_year" />
+          <NavigationProperty Name="classroom" Relationship="schooldbModel.register_years_classrooms_id" FromRole="registered" ToRole="classroom" />
+          <NavigationProperty Name="school" Relationship="schooldbModel.register_years_schools_id" FromRole="registered" ToRole="school" />
+          <NavigationProperty Name="student" Relationship="schooldbModel.register_years_students" FromRole="registered" ToRole="student" />
+        </EntityType>
+        <Association Name="register_years_academic_id">
+          <End Type="schooldbModel.academic_year" Role="academic_year" Multiplicity="1" />
+          <End Type="schooldbModel.registered" Role="registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academic_year">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="years_fk" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -437,30 +461,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="registeredTag_student_students_id">
-          <End Type="schooldbModel.student" Role="student" Multiplicity="1" />
-          <End Type="schooldbModel.registered_tag" Role="registered_tag" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="student">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="registered_tag">
-              <PropertyRef Name="student_fk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="registeredTag_tagid_tagid_id">
-          <End Type="schooldbModel.tagid" Role="tagid" Multiplicity="1" />
-          <End Type="schooldbModel.registered_tag" Role="registered_tag" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tagid">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="registered_tag">
-              <PropertyRef Name="tagid_fk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -495,18 +495,6 @@
                 <ScalarProperty Name="ClassLevel" ColumnName="ClassLevel" />
                 <ScalarProperty Name="ClassName" ColumnName="ClassName" />
                 <ScalarProperty Name="ClassID" ColumnName="ClassID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="registereds">
-            <EntityTypeMapping TypeName="schooldbModel.registered">
-              <MappingFragment StoreEntitySet="registered">
-                <ScalarProperty Name="enabled" ColumnName="enabled" />
-                <ScalarProperty Name="student_fk" ColumnName="student_fk" />
-                <ScalarProperty Name="class_fk" ColumnName="class_fk" />
-                <ScalarProperty Name="school_fk" ColumnName="school_fk" />
-                <ScalarProperty Name="years_fk" ColumnName="years_fk" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -569,6 +557,18 @@
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registereds">
+            <EntityTypeMapping TypeName="schooldbModel.registered">
+              <MappingFragment StoreEntitySet="registered">
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="student_fk" ColumnName="student_fk" />
+                <ScalarProperty Name="class_fk" ColumnName="class_fk" />
+                <ScalarProperty Name="school_fk" ColumnName="school_fk" />
+                <ScalarProperty Name="years_fk" ColumnName="years_fk" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

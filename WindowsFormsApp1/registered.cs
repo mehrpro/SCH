@@ -19,7 +19,7 @@ namespace SchoolApp
         public byte school_fk { get; set; }
         public byte class_fk { get; set; }
         public long student_fk { get; set; }
-        public sbyte enabled { get; set; }
+        public Nullable<bool> enabled { get; set; }
     
         public virtual academic_year academic_year { get; set; }
         public virtual classroom classroom { get; set; }
