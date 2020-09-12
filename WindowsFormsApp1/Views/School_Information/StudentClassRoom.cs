@@ -19,8 +19,8 @@ namespace SchoolApp.Views.School_Information
         private readonly ISchoolProcess schoolProcess;
         private academic_year years;
         private registered regStudent;
-        private ViewList_ClassRoom selectClass
-            ;
+        private ViewList_ClassRoom selectClass;
+        private bool CheckedRegister;
 
         public StudentClassRoom(ISetupProcess setupProcess, ISchoolProcess schoolProcess)
         {
@@ -73,35 +73,44 @@ namespace SchoolApp.Views.School_Information
         }
         private async void btnSave_Click(object sender, EventArgs e)
         {
+            
             if (dxValidationProvider1.Validate())
             {
                 if (regStudent.id > 0)
                 {
                     regStudent.class_fk = Convert.ToByte(cbxClassName.EditValue);
                     regStudent.student_fk = Convert.ToInt64(cbxStudent.EditValue);
-                    //regStudent.enabled = true;
-                    //regStudent.years_fk = PublicVar.AcademicYearsID;
-                    //regStudent.school_fk = PublicVar.schoolid;
+                    CheckedRegister = false;
                 }
                 else
                 {
+                    
                     regStudent = new registered();
                     regStudent.class_fk = Convert.ToByte(cbxClassName.EditValue);
                     regStudent.student_fk = Convert.ToInt64(cbxStudent.EditValue);
                     regStudent.enabled = true;
                     regStudent.years_fk = PublicVar.AcademicYearsID;
                     regStudent.school_fk = PublicVar.schoolid;
+                     CheckedRegister = await schoolProcess.RegisterdSudent(Convert.ToInt64(cbxStudent.EditValue));
                 }
-                var result = await schoolProcess.AppendRegisterdStudent(regStudent);
-                if (result)
+
+                if (!CheckedRegister)
                 {
-                    XtraMessageBox.Show(PublicVar.SuccessSaveToDatabase, Text, MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    ClearForm();
+                    var result = await schoolProcess.AppendRegisterdStudent(regStudent);
+                    if (result)
+                    {
+                        XtraMessageBox.Show(PublicVar.SuccessSaveToDatabase, Text, MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        ClearForm();
+                    }
+                    else
+                        XtraMessageBox.Show(PublicVar.ErrorSaveToDatabase, Text, MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                 }
                 else
-                    XtraMessageBox.Show(PublicVar.ErrorSaveToDatabase, Text, MessageBoxButtons.OK,
+                    XtraMessageBox.Show("دانش آموز قبلا در کلاس بندی ثبت شده است", Text, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
+
             }
             else
                 XtraMessageBox.Show(PublicVar.NoComplateForm, Text, MessageBoxButtons.OK,
@@ -135,7 +144,7 @@ namespace SchoolApp.Views.School_Information
                 gridViewStudentClassRoom.RefreshData();
                 return;
             }
-
+            //ClearForm();
             dgvStudentClassRoom.DataSource = await schoolProcess.GetRegisterListByClassRoomId(selectClass.شناسه_کلاس);
             gridViewStudentClassRoom.RefreshData();
         }

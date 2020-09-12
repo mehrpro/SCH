@@ -67,6 +67,12 @@ namespace SchoolApp
         /// <param name="classroomId">کلاس درس</param>
         /// <returns></returns>
         Task<List<registered>> GetRegisterListByClassRoomId(byte classroomId);
+        /// <summary>
+        /// بررسی ثبت نام  دانش آموز 
+        /// </summary>
+        /// <param name="stidentId"></param>
+        /// <returns></returns>
+        Task<bool> RegisterdSudent(long stidentId);
     }
 
     public class SchoolProcess : ISchoolProcess
@@ -223,6 +229,11 @@ namespace SchoolApp
         {
             var qry = await db.registereds.Where(x => x.class_fk == classroomId).ToListAsync();
             return qry;
+        }
+
+        public async Task<bool> RegisterdSudent(long stidentId)
+        {
+            return  await db.registereds.AnyAsync(x => x.student_fk == stidentId);
         }
     }
 
