@@ -10,15 +10,13 @@
 namespace SchoolApp
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class User
+    public partial class sp_helpdiagrams_Result
     {
+        public string Database { get; set; }
+        public string Name { get; set; }
         public int ID { get; set; }
-        public string UserName { get; set; }
-        public string FName { get; set; }
-        public string LName { get; set; }
-        public string Mobile { get; set; }
-        public string Password { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

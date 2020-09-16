@@ -4,23 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="49933de6adaf452894f7764efcfd86a2" Name="Diagram1">
-        <EntityTypeShape EntityType="schooldbModel.academic_year" Width="1.5" PointX="3.75" PointY="8.75" />
-        <EntityTypeShape EntityType="schooldbModel.classlevel" Width="1.5" PointX="1.5" PointY="12.25" />
-        <EntityTypeShape EntityType="schooldbModel.classroom" Width="1.5" PointX="3.75" PointY="11.875" />
-        <EntityTypeShape EntityType="schooldbModel.registered_tag" Width="1.5" PointX="3" PointY="4.5" />
-        <EntityTypeShape EntityType="schooldbModel.school" Width="1.5" PointX="3.75" PointY="15" />
-        <EntityTypeShape EntityType="schooldbModel.student" Width="1.5" PointX="0.75" PointY="3.5" />
-        <EntityTypeShape EntityType="schooldbModel.tagid" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="schooldbModel.user" Width="1.5" PointX="5.75" PointY="8.375" />
-        <AssociationConnector Association="schooldbModel.fk_classlevel" />
-        <AssociationConnector Association="schooldbModel.registeredTag_student_students_id" />
-        <AssociationConnector Association="schooldbModel.registeredTag_tagid_tagid_id" />
-        <EntityTypeShape EntityType="schooldbModel.registered" Width="1.5" PointX="8" PointY="8.75" />
-        <AssociationConnector Association="schooldbModel.register_years_academic_id" />
-        <AssociationConnector Association="schooldbModel.register_years_classrooms_id" />
-        <AssociationConnector Association="schooldbModel.register_years_schools_id" />
-        <AssociationConnector Association="schooldbModel.register_years_students" />
+      <Diagram DiagramId="36d480b3202b4acaa50b5dde3387748a" Name="Diagram1">
+        <EntityTypeShape EntityType="schooldbModel.AcademicYear" Width="1.5" PointX="3.75" PointY="8.875" />
+        <EntityTypeShape EntityType="schooldbModel.ClassLevel" Width="1.5" PointX="1.5" PointY="12.375" />
+        <EntityTypeShape EntityType="schooldbModel.ClassRoom" Width="1.5" PointX="3.75" PointY="12" />
+        <EntityTypeShape EntityType="schooldbModel.Registered" Width="1.5" PointX="6" PointY="4.25" />
+        <EntityTypeShape EntityType="schooldbModel.School" Width="1.5" PointX="3.75" PointY="15.125" />
+        <EntityTypeShape EntityType="schooldbModel.Student" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="schooldbModel.StudentTAG" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="schooldbModel.sysdiagram" Width="1.5" PointX="5.75" PointY="8.5" />
+        <EntityTypeShape EntityType="schooldbModel.TagRecorder" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="schooldbModel.Tag" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="schooldbModel.User" Width="1.5" PointX="7.75" PointY="8.5" />
+        <AssociationConnector Association="schooldbModel.FK_Registered_AcademicYears" />
+        <AssociationConnector Association="schooldbModel.FK_ClassRooms_ClassLevels" />
+        <AssociationConnector Association="schooldbModel.FK_Registered_ClassRooms" />
+        <AssociationConnector Association="schooldbModel.FK_Registered_Schools" />
+        <AssociationConnector Association="schooldbModel.FK_Registered_Students" />
+        <AssociationConnector Association="schooldbModel.FK_StudentTAG_Students" />
+        <AssociationConnector Association="schooldbModel.FK_StudentTAG_Tags" />
+        <AssociationConnector Association="schooldbModel.FK_TagRecorder_Tags" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

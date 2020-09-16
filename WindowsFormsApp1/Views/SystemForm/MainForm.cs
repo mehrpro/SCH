@@ -15,15 +15,15 @@ namespace SchoolApp.Views.SystemForm
     public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
         private ISetupProcess setupProcess;
-        private school selectSchool;
-        private academic_year years;
+        private School selectSchool;
+        private AcademicYear years;
 
         public MainForm(ISetupProcess setupProcess)
         {
             this.setupProcess = setupProcess;
             InitializeComponent();
             this.Text = PublicVar.SchoolName;
-            years = new academic_year();
+            years = new AcademicYear();
 
         }
 
@@ -79,15 +79,15 @@ namespace SchoolApp.Views.SystemForm
 
 
 
-        private async void MainForm_Load(object sender, EventArgs e)
+        private  void MainForm_Load(object sender, EventArgs e)
         {
-            selectSchool = await setupProcess.GetSchoolInformation();
+            selectSchool =  setupProcess.GetSchoolInformation();
             txtSchoolName.EditValue = selectSchool.SchoolName;
             txtSchoolAddress.EditValue = selectSchool.SchoolAddress;
             txtSchoolTel.EditValue = selectSchool.SchoolTel;
             PublicVar.schoolid = selectSchool.ID;
 
-            years = await setupProcess.AcadamicYears();
+            years =  setupProcess.AcadamicYears();
             PublicVar.YearsName = years.years_name;
             txtYearName.EditValue = years.years_name;
             StartDateEdit.DateTime = years.years_start;

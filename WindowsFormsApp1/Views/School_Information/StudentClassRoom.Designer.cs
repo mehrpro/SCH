@@ -34,6 +34,11 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
@@ -50,6 +55,8 @@
             this.colstudent_fk2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnSelectStudent = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnRemove = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.txtAcademicYears = new DevExpress.XtraEditors.TextEdit();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
@@ -77,6 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentClassRoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStudentClassRoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectStudent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAcademicYears.Properties)).BeginInit();
@@ -127,7 +135,8 @@
             this.dgvStudentClassRoom.MainView = this.gridViewStudentClassRoom;
             this.dgvStudentClassRoom.Name = "dgvStudentClassRoom";
             this.dgvStudentClassRoom.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnSelectStudent});
+            this.btnSelectStudent,
+            this.btnRemove});
             this.dgvStudentClassRoom.Size = new System.Drawing.Size(1063, 369);
             this.dgvStudentClassRoom.TabIndex = 0;
             this.dgvStudentClassRoom.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -196,75 +205,75 @@
             this.colstudent_fk,
             this.colstudent_fk1,
             this.colstudent_fk2,
-            this.gridColumn1});
+            this.gridColumn1,
+            this.gridColumn2});
             this.gridViewStudentClassRoom.GridControl = this.dgvStudentClassRoom;
             this.gridViewStudentClassRoom.Name = "gridViewStudentClassRoom";
+            this.gridViewStudentClassRoom.OptionsBehavior.ReadOnly = true;
             // 
             // colclassroom
             // 
             this.colclassroom.AppearanceCell.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
             this.colclassroom.Caption = "id";
-            this.colclassroom.FieldName = "id";
+            this.colclassroom.FieldName = "ID";
             this.colclassroom.Name = "colclassroom";
             // 
             // colclassroom1
             // 
             this.colclassroom1.AppearanceCell.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
             this.colclassroom1.Caption = "مقطع تحصیلی";
-            this.colclassroom1.FieldName = "classroom.classlevel1.ClassLevel1";
+            this.colclassroom1.FieldName = "ClassRoom.ClassLevel.ClassLevel1";
             this.colclassroom1.Name = "colclassroom1";
             this.colclassroom1.Visible = true;
-            this.colclassroom1.VisibleIndex = 4;
-            this.colclassroom1.Width = 200;
+            this.colclassroom1.VisibleIndex = 3;
+            this.colclassroom1.Width = 185;
             // 
             // colclassroom2
             // 
             this.colclassroom2.AppearanceCell.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
             this.colclassroom2.Caption = "نام کلاس درس";
-            this.colclassroom2.FieldName = "classroom.ClassName";
+            this.colclassroom2.FieldName = "ClassRoom.ClassName";
             this.colclassroom2.Name = "colclassroom2";
             this.colclassroom2.Visible = true;
-            this.colclassroom2.VisibleIndex = 5;
-            this.colclassroom2.Width = 208;
+            this.colclassroom2.VisibleIndex = 4;
+            this.colclassroom2.Width = 216;
             // 
             // colstudent_fk
             // 
             this.colstudent_fk.AppearanceCell.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
             this.colstudent_fk.Caption = "دانش آموز";
-            this.colstudent_fk.FieldName = "student.FullName";
+            this.colstudent_fk.FieldName = "Student.FullName";
             this.colstudent_fk.Name = "colstudent_fk";
             this.colstudent_fk.Visible = true;
-            this.colstudent_fk.VisibleIndex = 1;
-            this.colstudent_fk.Width = 200;
+            this.colstudent_fk.VisibleIndex = 0;
+            this.colstudent_fk.Width = 185;
             // 
             // colstudent_fk1
             // 
             this.colstudent_fk1.AppearanceCell.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
             this.colstudent_fk1.Caption = "کد ملی";
-            this.colstudent_fk1.FieldName = "student.StudentNatinalCode";
+            this.colstudent_fk1.FieldName = "Student.StudentNatinalCode";
             this.colstudent_fk1.Name = "colstudent_fk1";
             this.colstudent_fk1.Visible = true;
-            this.colstudent_fk1.VisibleIndex = 2;
-            this.colstudent_fk1.Width = 200;
+            this.colstudent_fk1.VisibleIndex = 1;
+            this.colstudent_fk1.Width = 185;
             // 
             // colstudent_fk2
             // 
             this.colstudent_fk2.AppearanceCell.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
             this.colstudent_fk2.Caption = "نام پدر";
-            this.colstudent_fk2.FieldName = "student.FatherName";
+            this.colstudent_fk2.FieldName = "Student.FatherName";
             this.colstudent_fk2.Name = "colstudent_fk2";
             this.colstudent_fk2.Visible = true;
-            this.colstudent_fk2.VisibleIndex = 3;
-            this.colstudent_fk2.Width = 200;
+            this.colstudent_fk2.VisibleIndex = 2;
+            this.colstudent_fk2.Width = 185;
             // 
             // gridColumn1
             // 
             this.gridColumn1.AppearanceCell.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
             this.gridColumn1.ColumnEdit = this.btnSelectStudent;
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 43;
+            this.gridColumn1.Width = 39;
             // 
             // btnSelectStudent
             // 
@@ -279,6 +288,29 @@
             this.btnSelectStudent.Name = "btnSelectStudent";
             this.btnSelectStudent.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnSelectStudent.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnSelectStudent_ButtonClick_1);
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.AppearanceCell.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
+            this.gridColumn2.ColumnEdit = this.btnRemove;
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 5;
+            this.gridColumn2.Width = 50;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.AutoHeight = false;
+            editorButtonImageOptions2.Image = global::SchoolApp.Properties.Resources.remove_16x16;
+            serializableAppearanceObject5.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
+            serializableAppearanceObject6.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
+            serializableAppearanceObject7.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
+            serializableAppearanceObject8.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
+            this.btnRemove.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnRemove.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnRemove_ButtonClick);
             // 
             // panelControl2
             // 
@@ -616,6 +648,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentClassRoom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewStudentClassRoom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectStudent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
@@ -664,5 +697,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colstudent_fk1;
         private DevExpress.XtraGrid.Columns.GridColumn colstudent_fk2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnRemove;
     }
 }

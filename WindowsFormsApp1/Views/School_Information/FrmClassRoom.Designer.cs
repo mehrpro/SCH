@@ -37,12 +37,10 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtClassName = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.chkEnabled = new DevExpress.XtraEditors.ToggleSwitch();
             this.cbxClassLevel = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,10 +56,10 @@
             this.btnSelect = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.classRoomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtClassName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkEnabled.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxClassLevel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -72,22 +70,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classRoomsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.txtClassName);
             this.panelControl1.Controls.Add(this.simpleButton3);
             this.panelControl1.Controls.Add(this.btnSave);
-            this.panelControl1.Controls.Add(this.chkEnabled);
             this.panelControl1.Controls.Add(this.cbxClassLevel);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(2, 39);
+            this.panelControl1.Location = new System.Drawing.Point(2, 43);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(926, 136);
+            this.panelControl1.Size = new System.Drawing.Size(926, 102);
             this.panelControl1.TabIndex = 4;
             // 
             // labelControl1
@@ -99,16 +96,6 @@
             this.labelControl1.Size = new System.Drawing.Size(43, 20);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "نام کلاس";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl3.Location = new System.Drawing.Point(857, 96);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(37, 20);
-            this.labelControl3.TabIndex = 0;
-            this.labelControl3.Text = "وضعیت";
             // 
             // labelControl2
             // 
@@ -137,7 +124,7 @@
             // 
             this.simpleButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleButton3.ImageOptions.Image = global::SchoolApp.Properties.Resources.cancel_32x322;
-            this.simpleButton3.Location = new System.Drawing.Point(284, 78);
+            this.simpleButton3.Location = new System.Drawing.Point(258, 39);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(107, 43);
             this.simpleButton3.TabIndex = 3;
@@ -148,30 +135,12 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.ImageOptions.Image = global::SchoolApp.Properties.Resources.saveto_32x32;
-            this.btnSave.Location = new System.Drawing.Point(397, 78);
+            this.btnSave.Location = new System.Drawing.Point(371, 39);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 43);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "ذخیره";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // chkEnabled
-            // 
-            this.chkEnabled.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkEnabled.EditValue = true;
-            this.chkEnabled.Location = new System.Drawing.Point(670, 91);
-            this.chkEnabled.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chkEnabled.Name = "chkEnabled";
-            this.chkEnabled.Parmida_ActivePlusMultiKeys = false;
-            this.chkEnabled.Properties.Appearance.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
-            this.chkEnabled.Properties.AppearanceDisabled.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
-            this.chkEnabled.Properties.AppearanceFocused.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
-            this.chkEnabled.Properties.AppearanceReadOnly.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
-            this.chkEnabled.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
-            this.chkEnabled.Properties.OffText = "غیرفعال";
-            this.chkEnabled.Properties.OnText = "فعال";
-            this.chkEnabled.Size = new System.Drawing.Size(179, 30);
-            this.chkEnabled.TabIndex = 1;
             // 
             // cbxClassLevel
             // 
@@ -270,9 +239,9 @@
             // 
             this.panelControl2.Controls.Add(this.dgvClassRoom);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(2, 175);
+            this.panelControl2.Location = new System.Drawing.Point(2, 145);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(926, 340);
+            this.panelControl2.Size = new System.Drawing.Size(926, 370);
             this.panelControl2.TabIndex = 5;
             // 
             // dgvClassRoom
@@ -283,7 +252,7 @@
             this.dgvClassRoom.Name = "dgvClassRoom";
             this.dgvClassRoom.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnSelect});
-            this.dgvClassRoom.Size = new System.Drawing.Size(922, 336);
+            this.dgvClassRoom.Size = new System.Drawing.Size(922, 366);
             this.dgvClassRoom.TabIndex = 2;
             this.dgvClassRoom.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewClassRoom});
@@ -353,6 +322,7 @@
             this.gridColumn6});
             this.gridViewClassRoom.GridControl = this.dgvClassRoom;
             this.gridViewClassRoom.Name = "gridViewClassRoom";
+            this.gridViewClassRoom.OptionsBehavior.ReadOnly = true;
             // 
             // gridColumn1
             // 
@@ -377,7 +347,7 @@
             // 
             this.gridColumn3.AppearanceCell.TextOptions.RightToLeftFixed = System.Windows.Forms.RightToLeft.No;
             this.gridColumn3.Caption = "مقطع تحصیلی";
-            this.gridColumn3.FieldName = "classlevel1.ClassLevel1";
+            this.gridColumn3.FieldName = "ClassLevel.ClassLevel1";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 4;
@@ -399,8 +369,6 @@
             this.gridColumn5.Caption = "وضعیت";
             this.gridColumn5.FieldName = "ClassRoomEnable";
             this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 5;
             this.gridColumn5.Width = 126;
             // 
             // gridColumn6
@@ -438,6 +406,10 @@
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Text = "کلاس های مدرسه";
             // 
+            // classRoomsBindingSource
+            // 
+            this.classRoomsBindingSource.DataSource = typeof(SchoolApp.ClassRoom);
+            // 
             // FrmClassRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -452,7 +424,6 @@
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtClassName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkEnabled.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbxClassLevel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
@@ -463,6 +434,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classRoomsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -479,8 +451,6 @@
         private DevExpress.XtraGrid.GridControl dgvClassRoom;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewClassRoom;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.ToggleSwitch chkEnabled;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
@@ -492,5 +462,6 @@
         private DevExpress.XtraEditors.SearchLookUpEdit cbxClassLevel;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private System.Windows.Forms.BindingSource classRoomsBindingSource;
     }
 }

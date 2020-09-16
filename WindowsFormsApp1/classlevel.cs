@@ -12,18 +12,18 @@ namespace SchoolApp
     using System;
     using System.Collections.Generic;
     
-    public partial class classlevel
+    public partial class ClassLevel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public classlevel()
+        public ClassLevel()
         {
-            this.classrooms = new HashSet<classroom>();
+            this.ClassRooms = new HashSet<ClassRoom>();
         }
     
-        public sbyte ID { get; set; }
+        public int ID { get; set; }
         public string ClassLevel1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<classroom> classrooms { get; set; }
+        public virtual ICollection<ClassRoom> ClassRooms { get; set; }
     }
 }

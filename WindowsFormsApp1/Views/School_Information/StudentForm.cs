@@ -17,8 +17,8 @@ namespace SchoolApp.Views.School_Information
     {
         private ISetupProcess setupProcess;
         private readonly ISchoolProcess schoolProcess;
-        private academic_year years;
-        private student newstudent;
+        private AcademicYear years;
+        private Student newstudent;
 
         public StudentForm(ISetupProcess setupProcess, ISchoolProcess schoolProcess)
         {
@@ -26,7 +26,7 @@ namespace SchoolApp.Views.School_Information
             InitializeComponent();
             this.setupProcess = setupProcess;
             ClearForm();
-            newstudent  = new student();
+            newstudent  = new Student();
         }
 
         private async void AcademicYearsForm_Load(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace SchoolApp.Views.School_Information
             txtSMS.ResetText();
             dateBrithDate.DateTime = DateTime.Now;
             txtName.Focus();
-            newstudent = new student();
+            newstudent = new Student();
             
             dgvStudentList.DataSource = await schoolProcess.GetAllStudent();
         }
@@ -76,11 +76,11 @@ namespace SchoolApp.Views.School_Information
                     newstudent.SMS = txtSMS.Text;
                     newstudent.BrithDate = dateBrithDate.DateTime.Date;
                     newstudent.RegDate = DateTime.Now;
-                    newstudent.enabled = true;
+                    newstudent.Enabled = true;
                 }
                 else
                 {
-                    newstudent = new student();
+                    newstudent = new Student();
                     newstudent.FName = txtName.Text;
                     newstudent.LName = txtFamily.Text;
                     newstudent.FullName = $"{txtName.Text} {txtFamily.Text}";
@@ -94,7 +94,7 @@ namespace SchoolApp.Views.School_Information
                     newstudent.SMS = txtSMS.Text;
                     newstudent.BrithDate = dateBrithDate.DateTime.Date;
                     newstudent.RegDate = DateTime.Now;
-                    newstudent.enabled = true;
+                    newstudent.Enabled = true;
                 }
                 var result = await schoolProcess.AppendStudent(newstudent);
                 if (result)
@@ -117,9 +117,9 @@ namespace SchoolApp.Views.School_Information
         {
             if (gridView1.GetFocusedRowCellValue("ID") != null)
             {
-                newstudent = new student();
+                newstudent = new Student();
                 var FocusedRow = gridView1.GetFocusedRow();
-                var selectFocusedRow = (student)FocusedRow;
+                var selectFocusedRow = (Student)FocusedRow;
                 
                 newstudent = await schoolProcess.GetStudentById(selectFocusedRow.ID);
                 txtName.Text = newstudent.FName;
@@ -132,7 +132,7 @@ namespace SchoolApp.Views.School_Information
                 txtSMS.Text = newstudent.SMS;
                 txtStudentCode.Text = newstudent.StudentCode;
                 txtmather.Text = newstudent.MotherName;
-                dateBrithDate.DateTime = newstudent.BrithDate.GetValueOrDefault();
+                dateBrithDate.DateTime = newstudent.BrithDate;
             }
         }
     }

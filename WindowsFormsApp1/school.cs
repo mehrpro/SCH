@@ -12,20 +12,20 @@ namespace SchoolApp
     using System;
     using System.Collections.Generic;
     
-    public partial class school
+    public partial class School
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public school()
+        public School()
         {
-            this.registereds = new HashSet<registered>();
+            this.Registereds = new HashSet<Registered>();
         }
     
-        public byte ID { get; set; }
+        public int ID { get; set; }
         public string SchoolName { get; set; }
         public string SchoolAddress { get; set; }
         public string SchoolTel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<registered> registereds { get; set; }
+        public virtual ICollection<Registered> Registereds { get; set; }
     }
 }

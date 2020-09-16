@@ -30,9 +30,9 @@ namespace SchoolApp.Views.School_Information
             if (result == null)
             {
 
-                var newTag = new tagid();
-                newTag.tagid_hex = txtTagNumber.EditValue.ToString().Trim();
-                newTag.enabled = true; 
+                var newTag = new Tag();
+                newTag.TagID_HEX = txtTagNumber.EditValue.ToString().Trim();
+                newTag.Enabled = true; 
                 var resultSave =await rfidClass.AddNewTagCard(newTag);
                 if (resultSave)
                 {

@@ -12,9 +12,9 @@ namespace SchoolApp
         /// </summary>
         /// <param name="string_tagid">شناسه تگ </param>
         /// <returns></returns>
-        Task<tagid> GetRFID_ByTagID(string string_tagid);
+        Task<Tag> GetRFID_ByTagID(string string_tagid);
 
-        Task<bool> AddNewTagCard(tagid tagCard);
+        Task<bool> AddNewTagCard(Tag tagCard);
     }
 
    public class RfidClass : IRfid_Class
@@ -24,16 +24,16 @@ namespace SchoolApp
         {
             this.db = db;
         }
-        public async Task<tagid> GetRFID_ByTagID(string string_tagid)
+        public async Task<Tag> GetRFID_ByTagID(string string_tagid)
         {
-            return await db.tagids.SingleOrDefaultAsync(x => x.tagid_hex == string_tagid);
+            return await db.Tags.SingleOrDefaultAsync(x => x.TagID_HEX == string_tagid);
         }
 
-        public async Task<bool> AddNewTagCard(tagid tagCard)
+        public async Task<bool> AddNewTagCard(Tag tagCard)
         {
             try
             {
-                db.tagids.Add(tagCard);
+                db.Tags.Add(tagCard);
                 var result = await db.SaveChangesAsync();
                 return Convert.ToBoolean(result);
             }

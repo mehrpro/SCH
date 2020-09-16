@@ -12,16 +12,16 @@ namespace SchoolApp
     using System;
     using System.Collections.Generic;
     
-    public partial class student
+    public partial class Student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public student()
+        public Student()
         {
-            this.registered_tag = new HashSet<registered_tag>();
-            this.registereds = new HashSet<registered>();
+            this.Registereds = new HashSet<Registered>();
+            this.StudentTAGs = new HashSet<StudentTAG>();
         }
     
-        public long ID { get; set; }
+        public int ID { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
         public string FullName { get; set; }
@@ -33,13 +33,13 @@ namespace SchoolApp
         public string FatherPhone { get; set; }
         public string MotherPhone { get; set; }
         public string SMS { get; set; }
-        public Nullable<System.DateTime> BrithDate { get; set; }
-        public Nullable<System.DateTime> RegDate { get; set; }
-        public Nullable<bool> enabled { get; set; }
+        public System.DateTime BrithDate { get; set; }
+        public System.DateTime RegDate { get; set; }
+        public bool Enabled { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<registered_tag> registered_tag { get; set; }
+        public virtual ICollection<Registered> Registereds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<registered> registereds { get; set; }
+        public virtual ICollection<StudentTAG> StudentTAGs { get; set; }
     }
 }

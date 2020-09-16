@@ -12,13 +12,14 @@ namespace SchoolApp
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class StudentTAG
     {
         public int ID { get; set; }
-        public string UserName { get; set; }
-        public string FName { get; set; }
-        public string LName { get; set; }
-        public string Mobile { get; set; }
-        public string Password { get; set; }
+        public int TagID_FK { get; set; }
+        public int Student_FK { get; set; }
+        public bool Enabled { get; set; }
+    
+        public virtual Student Student { get; set; }
+        public virtual Tag Tag { get; set; }
     }
 }

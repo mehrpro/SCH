@@ -20,11 +20,11 @@ namespace SchoolApp.Views.SystemForm
 
         }
 
-        private async void ChechingUser()
+        private  void ChechingUser()
         {
-            var schoolname = await SetupProcess.GetSchoolInformation();
+            var schoolname =  SetupProcess.GetSchoolInformation();
             PublicVar.SchoolName = schoolname.SchoolName;
-            var result = await SetupProcess.GetAdminUsers();
+            var result =  SetupProcess.GetAdminUsers();
             if (result)
             {
                 var str = $"کاربر مدیر مدرسه با نام کاربری admin  و رمز عبور admin ایجاد شد";
@@ -40,9 +40,9 @@ namespace SchoolApp.Views.SystemForm
             DialogResult = DialogResult.Cancel;
         }
 
-        private async void btnLogin_Click(object sender, EventArgs e)
+        private  void btnLogin_Click(object sender, EventArgs e)
         {
-            if (await SetupProcess.SuccessAccount(txtUserName.EditValue.ToString(),txtPassword.EditValue.ToString()))
+            if (SetupProcess.SuccessAccount(txtUserName.EditValue.ToString(),txtPassword.EditValue.ToString()))
             {
                 DialogResult = DialogResult.OK;
                 return;

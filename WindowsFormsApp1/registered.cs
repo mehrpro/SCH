@@ -12,18 +12,18 @@ namespace SchoolApp
     using System;
     using System.Collections.Generic;
     
-    public partial class registered
+    public partial class Registered
     {
-        public int id { get; set; }
-        public int years_fk { get; set; }
-        public byte school_fk { get; set; }
-        public byte class_fk { get; set; }
-        public long student_fk { get; set; }
-        public Nullable<bool> enabled { get; set; }
+        public int ID { get; set; }
+        public int Years_FK { get; set; }
+        public int School_FK { get; set; }
+        public int Class_FK { get; set; }
+        public int Student_FK { get; set; }
+        public bool Enabled { get; set; }
     
-        public virtual academic_year academic_year { get; set; }
-        public virtual classroom classroom { get; set; }
-        public virtual school school { get; set; }
-        public virtual student student { get; set; }
+        public virtual AcademicYear AcademicYear { get; set; }
+        public virtual ClassRoom ClassRoom { get; set; }
+        public virtual School School { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

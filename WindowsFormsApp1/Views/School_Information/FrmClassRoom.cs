@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using System.Data.Entity;
 
 namespace SchoolApp.Views.School_Information
 {
     public partial class FrmClassRoom : DevExpress.XtraEditors.XtraForm
     {
         private ISchoolProcess schoolProcess;
-        private classroom newClass;
+        private ClassRoom newClass;
 
         public FrmClassRoom(ISchoolProcess schoolProcess)
         {
             this.schoolProcess = schoolProcess;
             InitializeComponent();
-            newClass = new classroom();
+            newClass = new ClassRoom();
             setup();
-
-
         }
 
         private async void setup()
@@ -35,17 +34,17 @@ namespace SchoolApp.Views.School_Information
             {
                 if (newClass.ClassID < 1)
                 {
-                    newClass = new classroom();
+                    newClass = new ClassRoom();
                     newClass.ClassName = txtClassName.EditValue.ToString();
-                    newClass.ClassLevel =Convert.ToSByte( cbxClassLevel.EditValue);
+                    newClass.ClassLevel_FK =Convert.ToInt32(cbxClassLevel.EditValue);
                     newClass.ClassRegisterDate = DateTime.Now;
-                    newClass.ClassRoomEnable = Convert.ToBoolean(chkEnabled.EditValue);
+                    newClass.ClassRoomEnable = true;
                 }
                 else
                 {
                     newClass.ClassName = txtClassName.EditValue.ToString();
-                    newClass.ClassLevel = Convert.ToSByte(cbxClassLevel.EditValue);
-                    newClass.ClassRoomEnable = Convert.ToBoolean(chkEnabled.EditValue);
+                    newClass.ClassLevel_FK = Convert.ToInt32(cbxClassLevel.EditValue);
+                    //newClass.ClassRoomEnable = Convert.ToBoolean(chkEnabled.EditValue);
                 }
                 var result = await schoolProcess.ClassRoomCRUD(newClass);
                 if (result)
@@ -53,9 +52,11 @@ namespace SchoolApp.Views.School_Information
    
                     XtraMessageBox.Show(PublicVar.SuccessSaveToDatabase, Text, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
-                    dgvClassRoom.DataSource = await schoolProcess.GetClassRoomByLevel(Convert.ToSByte(cbxClassLevel.EditValue));
+                    dgvClassRoom.DataSource = await schoolProcess.GetClassRoomByLevel();
                     txtClassName.ResetText();
-                    chkEnabled.EditValue = true;
+                    //chkEnabled.EditValue = true;
+                    cbxClassLevel.ReadOnly = false;
+                    newClass = new ClassRoom();
                 }
                 else
                     XtraMessageBox.Show(PublicVar.ErrorSaveToDatabase, Text, MessageBoxButtons.OK,
@@ -67,13 +68,14 @@ namespace SchoolApp.Views.School_Information
         {
             if (gridViewClassRoom.GetFocusedRowCellValue("ClassID") != null)
             {
-                newClass = new classroom();
+                newClass = new ClassRoom();
                 var FocusedRow = gridViewClassRoom.GetFocusedRow();
-                var selectFocusedRow = (classroom)FocusedRow;
+                var selectFocusedRow = (ClassRoom)FocusedRow;
                 newClass = await schoolProcess.GetClassroomByClassId(selectFocusedRow.ClassID);
                 txtClassName.EditValue = newClass.ClassName;
-                chkEnabled.EditValue = newClass.ClassRoomEnable;
-                cbxClassLevel.EditValue = newClass.ClassLevel;
+                //chkEnabled.EditValue = newClass.ClassRoomEnable;
+                cbxClassLevel.EditValue = newClass.ClassLevel.ID;
+                cbxClassLevel.ReadOnly = true;
             }
         }
 
@@ -82,13 +84,13 @@ namespace SchoolApp.Views.School_Information
         private async void cbxClassLevel_EditValueChanged(object sender, EventArgs e)
         {
 
-            var selectClassLevel = (classlevel) cbxClassLevel.GetSelectedDataRow();
+            var selectClassLevel = (ClassLevel) cbxClassLevel.GetSelectedDataRow();
             if (selectClassLevel == null)
             {
                 return;
                 
             }
-            dgvClassRoom.DataSource = await schoolProcess.GetClassRoomByLevel(selectClassLevel.ID);
+            dgvClassRoom.DataSource = await schoolProcess.GetClassRoomByLevel();
             //txtClassName.ResetText();
             //chkEnabled.EditValue = true;
         }

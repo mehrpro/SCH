@@ -22,7 +22,7 @@
         /// <summary>
         /// شناسه مدررسه
         /// </summary>
-        public static byte schoolid { get; set; }
+        public static int schoolid { get; set; }
 
 
     }

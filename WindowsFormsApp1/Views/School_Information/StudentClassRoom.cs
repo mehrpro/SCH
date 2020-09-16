@@ -17,8 +17,8 @@ namespace SchoolApp.Views.School_Information
     {
         private ISetupProcess setupProcess;
         private readonly ISchoolProcess schoolProcess;
-        private academic_year years;
-        private registered regStudent;
+        private AcademicYear years;
+        private Registered regStudent;
         private ViewList_ClassRoom selectClass;
         private bool CheckedRegister;
 
@@ -29,9 +29,8 @@ namespace SchoolApp.Views.School_Information
             this.setupProcess = setupProcess;
             ClearForm();
             SetupForm();
-            regStudent = new registered();
+            regStudent = new Registered();
             txtAcademicYears.Text = PublicVar.YearsName;
-
         }
 
         private async void SetupForm()
@@ -63,11 +62,12 @@ namespace SchoolApp.Views.School_Information
 
             cbxStudent.ResetText();
 
-            regStudent = new registered();
+            regStudent = new Registered();
             if (selectClass == null)
             {
                 return;
             }
+            cbxStudent.Properties.DataSource = await schoolProcess.GetAllStudentForComboBox();
             dgvStudentClassRoom.DataSource = await schoolProcess.GetRegisterListByClassRoomId(selectClass.شناسه_کلاس);
             gridViewStudentClassRoom.RefreshData();
         }
@@ -76,27 +76,20 @@ namespace SchoolApp.Views.School_Information
             
             if (dxValidationProvider1.Validate())
             {
-                if (regStudent.id > 0)
-                {
-                    regStudent.class_fk = Convert.ToByte(cbxClassName.EditValue);
-                    regStudent.student_fk = Convert.ToInt64(cbxStudent.EditValue);
-                    CheckedRegister = false;
-                }
-                else
-                {
-                    
-                    regStudent = new registered();
-                    regStudent.class_fk = Convert.ToByte(cbxClassName.EditValue);
-                    regStudent.student_fk = Convert.ToInt64(cbxStudent.EditValue);
-                    regStudent.enabled = true;
-                    regStudent.years_fk = PublicVar.AcademicYearsID;
-                    regStudent.school_fk = PublicVar.schoolid;
-                     CheckedRegister = await schoolProcess.RegisterdSudent(Convert.ToInt64(cbxStudent.EditValue));
-                }
 
-                if (!CheckedRegister)
-                {
-                    var result = await schoolProcess.AppendRegisterdStudent(regStudent);
+                    
+                    regStudent = new Registered();
+                    regStudent.Class_FK = Convert.ToByte(cbxClassName.EditValue);
+                    regStudent.Student_FK = Convert.ToInt32(cbxStudent.EditValue);
+                    regStudent.Enabled = true;
+                    regStudent.Years_FK = PublicVar.AcademicYearsID;
+                    regStudent.School_FK = PublicVar.schoolid;
+                     //CheckedRegister = await schoolProcess.RegisterdSudent(Convert.ToInt32(cbxStudent.EditValue));
+               
+
+                //if (!CheckedRegister)
+                //{
+                    var result =  schoolProcess.AppendRegisterdStudent(regStudent);
                     if (result)
                     {
                         XtraMessageBox.Show(PublicVar.SuccessSaveToDatabase, Text, MessageBoxButtons.OK,
@@ -106,10 +99,10 @@ namespace SchoolApp.Views.School_Information
                     else
                         XtraMessageBox.Show(PublicVar.ErrorSaveToDatabase, Text, MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                }
-                else
-                    XtraMessageBox.Show("دانش آموز قبلا در کلاس بندی ثبت شده است", Text, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                //}
+                //else
+                //    XtraMessageBox.Show("دانش آموز قبلا در کلاس بندی ثبت شده است", Text, MessageBoxButtons.OK,
+                //        MessageBoxIcon.Error);
 
             }
             else
@@ -153,15 +146,27 @@ namespace SchoolApp.Views.School_Information
         {
             if (gridViewStudentClassRoom.GetFocusedRowCellValue("id") == null) return;
             var focused = gridViewStudentClassRoom.GetFocusedRow();
-            var selectrow = (registered)focused;
-            regStudent = new registered();
+            var selectrow = (Registered)focused;
+            regStudent = new Registered();
             regStudent = selectrow;
-            txtFather.Text = regStudent.student.FatherName;
-            txtBrithDate.Text = regStudent.student.BrithDate.Value.ConvertDateToPersian();
-            txtNatinalCode.Text = regStudent.student.StudentNatinalCode;
-            cbxStudent.EditValue = regStudent.student_fk;
+            txtFather.Text = regStudent.Student.FatherName;
+            txtBrithDate.Text = regStudent.Student.BrithDate.ConvertDateToPersian();
+            txtNatinalCode.Text = regStudent.Student.StudentNatinalCode;
+            cbxStudent.EditValue = regStudent.Student_FK;
 
         }
 
+        private async void btnRemove_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if (gridViewStudentClassRoom.GetFocusedRowCellValue("ID") == null) return;
+            var focused = gridViewStudentClassRoom.GetFocusedRow();
+            var selectrow = (Registered)focused;
+            var result = schoolProcess.DisableRegister(selectrow.ID);
+            if (result)
+            {
+                cbxStudent.Properties.DataSource = await schoolProcess.GetAllStudentForComboBox();
+                ClearForm();
+            }
+        }
     }
 }

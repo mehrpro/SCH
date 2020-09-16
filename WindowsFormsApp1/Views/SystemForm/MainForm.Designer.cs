@@ -100,7 +100,7 @@
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribGroupFirstInformation});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
-            this.ribbonControl1.Size = new System.Drawing.Size(953, 185);
+            this.ribbonControl1.Size = new System.Drawing.Size(953, 184);
             // 
             // backstageViewControl1
             // 
@@ -130,9 +130,9 @@
             this.backstageViewClientControl2.Controls.Add(this.txtSchoolTel);
             this.backstageViewClientControl2.Controls.Add(this.txtSchoolAddress);
             this.backstageViewClientControl2.Controls.Add(this.txtSchoolName);
-            this.backstageViewClientControl2.Location = new System.Drawing.Point(1, 63);
+            this.backstageViewClientControl2.Location = new System.Drawing.Point(1, 65);
             this.backstageViewClientControl2.Name = "backstageViewClientControl2";
-            this.backstageViewClientControl2.Size = new System.Drawing.Size(652, 389);
+            this.backstageViewClientControl2.Size = new System.Drawing.Size(652, 387);
             this.backstageViewClientControl2.TabIndex = 2;
             // 
             // labelControl4
@@ -210,7 +210,7 @@
             // 
             this.pictureEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureEdit1.EditValue = global::SchoolApp.Properties.Resources.sama;
-            this.pictureEdit1.Location = new System.Drawing.Point(14, 215);
+            this.pictureEdit1.Location = new System.Drawing.Point(14, 213);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Parmida_ActivePlusMultiKeys = false;
             this.pictureEdit1.Properties.ReadOnly = true;
@@ -409,7 +409,7 @@
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem1);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "دانش آموزان";
             // 
             // MainForm
             // 

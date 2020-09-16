@@ -12,19 +12,22 @@ namespace SchoolApp
     using System;
     using System.Collections.Generic;
     
-    public partial class tagid
+    public partial class Tag
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tagid()
+        public Tag()
         {
-            this.registered_tag = new HashSet<registered_tag>();
+            this.StudentTAGs = new HashSet<StudentTAG>();
+            this.TagRecorders = new HashSet<TagRecorder>();
         }
     
-        public int id { get; set; }
-        public string tagid_hex { get; set; }
-        public bool enabled { get; set; }
+        public int ID { get; set; }
+        public string TagID_HEX { get; set; }
+        public bool Enabled { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<registered_tag> registered_tag { get; set; }
+        public virtual ICollection<StudentTAG> StudentTAGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TagRecorder> TagRecorders { get; set; }
     }
 }

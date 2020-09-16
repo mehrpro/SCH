@@ -12,14 +12,15 @@ namespace SchoolApp
     using System;
     using System.Collections.Generic;
     
-    public partial class registered_tag
+    public partial class TagRecorder
     {
-        public long ID { get; set; }
-        public int tagid_fk { get; set; }
-        public long student_fk { get; set; }
-        public sbyte enabled { get; set; }
+        public int ID { get; set; }
+        public string TagID { get; set; }
+        public System.DateTime DateTimeRegister { get; set; }
+        public int MysqlID { get; set; }
+        public bool SMS { get; set; }
+        public int TagID_FK { get; set; }
     
-        public virtual student student { get; set; }
-        public virtual tagid tagid { get; set; }
+        public virtual Tag Tag { get; set; }
     }
 }
