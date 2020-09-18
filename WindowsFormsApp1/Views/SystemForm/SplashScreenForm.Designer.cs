@@ -28,12 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.SuspendLayout();
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(383, 111);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(92, 20);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "labelControl1";
+            // 
+            // SplashScreenForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelControl1);
+            this.Name = "SplashScreenForm";
             this.Text = "SplashScreenForm";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }
