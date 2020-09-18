@@ -101,7 +101,6 @@
           <Property Name="DateTimeRegister" Type="datetime" Nullable="false" />
           <Property Name="MysqlID" Type="int" Nullable="false" />
           <Property Name="SMS" Type="bit" Nullable="false" />
-          <Property Name="TagID_FK" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Tags">
           <Key>
@@ -110,6 +109,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TagID_HEX" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="DeleteTAG" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -206,18 +206,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TagRecorder_Tags">
-          <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
-          <End Role="TagRecorder" Type="Self.TagRecorder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tags">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TagRecorder">
-              <PropertyRef Name="TagID_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -289,10 +277,6 @@
             <End Role="Tags" EntitySet="Tags" />
             <End Role="StudentTAG" EntitySet="StudentTAG" />
           </AssociationSet>
-          <AssociationSet Name="FK_TagRecorder_Tags" Association="Self.FK_TagRecorder_Tags">
-            <End Role="Tags" EntitySet="Tags" />
-            <End Role="TagRecorder" EntitySet="TagRecorder" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -337,8 +321,6 @@
           <EntitySet Name="Students" EntityType="schooldbModel.Student" />
           <EntitySet Name="StudentTAGs" EntityType="schooldbModel.StudentTAG" />
           <EntitySet Name="sysdiagrams" EntityType="schooldbModel.sysdiagram" />
-          <EntitySet Name="TagRecorders" EntityType="schooldbModel.TagRecorder" />
-          <EntitySet Name="Tags" EntityType="schooldbModel.Tag" />
           <EntitySet Name="Users" EntityType="schooldbModel.User" />
           <AssociationSet Name="FK_Registered_AcademicYears" Association="schooldbModel.FK_Registered_AcademicYears">
             <End Role="AcademicYear" EntitySet="AcademicYears" />
@@ -364,14 +346,12 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="StudentTAG" EntitySet="StudentTAGs" />
           </AssociationSet>
+          <EntitySet Name="Tags" EntityType="schooldbModel.Tag" />
           <AssociationSet Name="FK_StudentTAG_Tags" Association="schooldbModel.FK_StudentTAG_Tags">
             <End Role="Tag" EntitySet="Tags" />
             <End Role="StudentTAG" EntitySet="StudentTAGs" />
           </AssociationSet>
-          <AssociationSet Name="FK_TagRecorder_Tags" Association="schooldbModel.FK_TagRecorder_Tags">
-            <End Role="Tag" EntitySet="Tags" />
-            <End Role="TagRecorder" EntitySet="TagRecorders" />
-          </AssociationSet>
+          <EntitySet Name="TagRecorders" EntityType="schooldbModel.TagRecorder" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -484,28 +464,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TagRecorder">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TagID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateTimeRegister" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MysqlID" Type="Int32" Nullable="false" />
-          <Property Name="SMS" Type="Boolean" Nullable="false" />
-          <Property Name="TagID_FK" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Tag" Relationship="schooldbModel.FK_TagRecorder_Tags" FromRole="TagRecorder" ToRole="Tag" />
-        </EntityType>
-        <EntityType Name="Tag">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TagID_HEX" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="StudentTAGs" Relationship="schooldbModel.FK_StudentTAG_Tags" FromRole="Tag" ToRole="StudentTAG" />
-          <NavigationProperty Name="TagRecorders" Relationship="schooldbModel.FK_TagRecorder_Tags" FromRole="Tag" ToRole="TagRecorder" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
@@ -589,6 +547,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagID_HEX" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="DeleteTAG" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="StudentTAGs" Relationship="schooldbModel.FK_StudentTAG_Tags" FromRole="Tag" ToRole="StudentTAG" />
+        </EntityType>
         <Association Name="FK_StudentTAG_Tags">
           <End Type="schooldbModel.Tag" Role="Tag" Multiplicity="1" />
           <End Type="schooldbModel.StudentTAG" Role="StudentTAG" Multiplicity="*" />
@@ -601,18 +569,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TagRecorder_Tags">
-          <End Type="schooldbModel.Tag" Role="Tag" Multiplicity="1" />
-          <End Type="schooldbModel.TagRecorder" Role="TagRecorder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tag">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TagRecorder">
-              <PropertyRef Name="TagID_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="TagRecorder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeRegister" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MysqlID" Type="Int32" Nullable="false" />
+          <Property Name="SMS" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -738,27 +704,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TagRecorders">
-            <EntityTypeMapping TypeName="schooldbModel.TagRecorder">
-              <MappingFragment StoreEntitySet="TagRecorder">
-                <ScalarProperty Name="TagID_FK" ColumnName="TagID_FK" />
-                <ScalarProperty Name="SMS" ColumnName="SMS" />
-                <ScalarProperty Name="MysqlID" ColumnName="MysqlID" />
-                <ScalarProperty Name="DateTimeRegister" ColumnName="DateTimeRegister" />
-                <ScalarProperty Name="TagID" ColumnName="TagID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="schooldbModel.Tag">
-              <MappingFragment StoreEntitySet="Tags">
-                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
-                <ScalarProperty Name="TagID_HEX" ColumnName="TagID_HEX" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="schooldbModel.User">
               <MappingFragment StoreEntitySet="Users">
@@ -767,6 +712,27 @@
                 <ScalarProperty Name="LName" ColumnName="LName" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="schooldbModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="DeleteTAG" ColumnName="DeleteTAG" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="TagID_HEX" ColumnName="TagID_HEX" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagRecorders">
+            <EntityTypeMapping TypeName="schooldbModel.TagRecorder">
+              <MappingFragment StoreEntitySet="TagRecorder">
+                <ScalarProperty Name="SMS" ColumnName="SMS" />
+                <ScalarProperty Name="MysqlID" ColumnName="MysqlID" />
+                <ScalarProperty Name="DateTimeRegister" ColumnName="DateTimeRegister" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

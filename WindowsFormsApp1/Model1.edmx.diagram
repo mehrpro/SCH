@@ -13,8 +13,6 @@
         <EntityTypeShape EntityType="schooldbModel.Student" Width="1.5" PointX="0.75" PointY="3.625" />
         <EntityTypeShape EntityType="schooldbModel.StudentTAG" Width="1.5" PointX="3" PointY="4.625" />
         <EntityTypeShape EntityType="schooldbModel.sysdiagram" Width="1.5" PointX="5.75" PointY="8.5" />
-        <EntityTypeShape EntityType="schooldbModel.TagRecorder" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="schooldbModel.Tag" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="schooldbModel.User" Width="1.5" PointX="7.75" PointY="8.5" />
         <AssociationConnector Association="schooldbModel.FK_Registered_AcademicYears" />
         <AssociationConnector Association="schooldbModel.FK_ClassRooms_ClassLevels" />
@@ -22,9 +20,10 @@
         <AssociationConnector Association="schooldbModel.FK_Registered_Schools" />
         <AssociationConnector Association="schooldbModel.FK_Registered_Students" />
         <AssociationConnector Association="schooldbModel.FK_StudentTAG_Students" />
+        <EntityTypeShape EntityType="schooldbModel.Tag" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="schooldbModel.FK_StudentTAG_Tags" />
-        <AssociationConnector Association="schooldbModel.FK_TagRecorder_Tags" />
-      </Diagram>
+        <EntityTypeShape EntityType="schooldbModel.TagRecorder" Width="1.5" PointX="3.375" PointY="0.75" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

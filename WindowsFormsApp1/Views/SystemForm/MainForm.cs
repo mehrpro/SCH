@@ -119,5 +119,17 @@ namespace SchoolApp.Views.SystemForm
             frm.Dock = DockStyle.Fill;
             frm.Show();
         }
+
+        private void btnAccessCard_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            foreach (Form c in this.MdiChildren) c.Close();
+            var container = new StructureMap.Container(new TypeRegistery());
+            var frm = container.GetInstance<TagStudentForm>();
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
     }
 }

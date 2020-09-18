@@ -29,7 +29,7 @@ namespace SchoolApp.Views.School_Information
             newstudent  = new Student();
         }
 
-        private async void AcademicYearsForm_Load(object sender, EventArgs e)
+        private  void AcademicYearsForm_Load(object sender, EventArgs e)
         {
 
         }

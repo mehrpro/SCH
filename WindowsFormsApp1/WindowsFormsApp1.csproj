@@ -137,6 +137,12 @@
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\School_Information\TagStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\School_Information\TagStudentForm.Designer.cs">
+      <DependentUpon>TagStudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\School_Information\StudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\School_Information\TagStudentForm.resx">
+      <DependentUpon>TagStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\School_Information\StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,6 +303,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\tag_32x32.png" />
     <None Include="Resources\remove_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

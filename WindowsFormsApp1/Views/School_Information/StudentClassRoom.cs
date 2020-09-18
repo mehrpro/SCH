@@ -46,7 +46,7 @@ namespace SchoolApp.Views.School_Information
 
         }
 
-        private async void AcademicYearsForm_Load(object sender, EventArgs e)
+        private  void AcademicYearsForm_Load(object sender, EventArgs e)
         {
 
         }
@@ -71,7 +71,7 @@ namespace SchoolApp.Views.School_Information
             dgvStudentClassRoom.DataSource = await schoolProcess.GetRegisterListByClassRoomId(selectClass.شناسه_کلاس);
             gridViewStudentClassRoom.RefreshData();
         }
-        private async void btnSave_Click(object sender, EventArgs e)
+        private  void btnSave_Click(object sender, EventArgs e)
         {
             
             if (dxValidationProvider1.Validate())

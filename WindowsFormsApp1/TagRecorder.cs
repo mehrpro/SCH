@@ -19,8 +19,5 @@ namespace SchoolApp
         public System.DateTime DateTimeRegister { get; set; }
         public int MysqlID { get; set; }
         public bool SMS { get; set; }
-        public int TagID_FK { get; set; }
-    
-        public virtual Tag Tag { get; set; }
     }
 }

@@ -100,7 +100,7 @@
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribGroupFirstInformation});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
-            this.ribbonControl1.Size = new System.Drawing.Size(953, 184);
+            this.ribbonControl1.Size = new System.Drawing.Size(953, 172);
             // 
             // backstageViewControl1
             // 
@@ -302,6 +302,7 @@
             // btnNewCart
             // 
             this.btnNewCart.Caption = "کارت جدید";
+            this.btnNewCart.Enabled = false;
             this.btnNewCart.Id = 1;
             this.btnNewCart.ImageOptions.Image = global::SchoolApp.Properties.Resources.cards_16x16;
             this.btnNewCart.ImageOptions.LargeImage = global::SchoolApp.Properties.Resources.cards_32x32;
@@ -311,10 +312,12 @@
             // btnAccessCard
             // 
             this.btnAccessCard.Caption = "تخصیص کارت";
+            this.btnAccessCard.Enabled = false;
             this.btnAccessCard.Id = 2;
             this.btnAccessCard.ImageOptions.Image = global::SchoolApp.Properties.Resources.contact_16x16;
             this.btnAccessCard.ImageOptions.LargeImage = global::SchoolApp.Properties.Resources.contact_32x32;
             this.btnAccessCard.Name = "btnAccessCard";
+            this.btnAccessCard.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAccessCard_ItemClick);
             // 
             // barButtonItem4
             // 
@@ -387,7 +390,6 @@
             this.ribTagCard,
             this.ribSchoolPropertes,
             this.ribbonPageGroup1});
-            this.ribGroupFirstInformation.ImageOptions.Image = global::SchoolApp.Properties.Resources.convert_32x32;
             this.ribGroupFirstInformation.Name = "ribGroupFirstInformation";
             this.ribGroupFirstInformation.Text = "اطلاعات پایه";
             // 

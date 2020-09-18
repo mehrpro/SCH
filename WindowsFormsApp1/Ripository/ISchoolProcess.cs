@@ -75,6 +75,31 @@ namespace SchoolApp
         Task<bool> RegisterdSudent(int stidentId);
 
         bool DisableRegister(int id);
+        /// <summary>
+        /// تگ های قابل استفاده
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Tag>> GetAllNoEnabled();
+
+        /// <summary>
+        /// وجود تگ فعال برای این دانش آموز
+        /// </summary>
+        /// <param name="studentId">شناسه دانش آموز</param>
+        /// <returns></returns>
+        Task<StudentTAG> GetStudentTAGById(int studentId);
+        /// <summary>
+        /// تغییر کارت دانش آموز
+        /// </summary>
+        /// <param name="lastID">شناسه  قبلی</param>
+        /// <param name="newStudentTag">تگ جدید</param>
+        /// <returns></returns>
+        Task<bool> ChangeStudentTAG(int lastID, StudentTAG newStudentTag);
+        /// <summary>
+        /// ثبت کارت جدید برای دانش آموز
+        /// </summary>
+        /// <param name="studentTag">کارت</param>
+        /// <returns></returns>
+        Task<bool> AddStudentTAG(StudentTAG studentTag);
     }
 
     public class SchoolProcess : ISchoolProcess
@@ -157,7 +182,7 @@ namespace SchoolApp
 
         public async Task<List<Student>> GetAllStudent()
         {
-            return await db.Students.ToListAsync();
+            return await db.Students.Where(x=>x.Enabled).ToListAsync();
         }
 
         public async Task<Student> GetStudentById(int id)
@@ -244,6 +269,51 @@ namespace SchoolApp
                 return true;
             }
             catch 
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<Tag>> GetAllNoEnabled()
+        {
+            return await db.Tags.Where(x => x.DeleteTAG == false && x.Enabled == false).ToListAsync();
+        }
+
+        public async Task<StudentTAG> GetStudentTAGById(int studentId)
+        {
+            return await db.StudentTAGs.SingleOrDefaultAsync(x => x.Student_FK == studentId && x.Enabled);
+        }
+
+        public async Task<bool> ChangeStudentTAG(int lastID, StudentTAG newStudentTag)
+        {
+            try
+            {
+                var studentTag = db.StudentTAGs.Find(lastID);
+                studentTag.Enabled = false;
+                var tag = db.Tags.Find(studentTag.Tag.ID);
+                tag.DeleteTAG = true;
+                tag.Enabled = true;
+                db.StudentTAGs.Add(newStudentTag);
+                await db.SaveChangesAsync();
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> AddStudentTAG(StudentTAG studentTag)
+        {
+            try
+            {
+                var tag = db.Tags.Find(studentTag.TagID_FK);
+                tag.Enabled = true;
+                db.StudentTAGs.Add(studentTag);
+                await db.SaveChangesAsync();
+                return true;
+            }
+            catch
             {
                 return false;
             }

@@ -16,35 +16,35 @@ namespace SchoolApp.Views.School_Information
         private IRfid_Class rfidClass;
         public FrmAddTagCard(IRfid_Class rfidClass)
         {
-            this.rfidClass = rfidClass;
             InitializeComponent();
+            this.rfidClass = rfidClass;
         }
 
-        private void ClearForm()
+        private void FrmAddTagCard_Load(object sender, EventArgs e)
         {
-            txtTagNumber.ResetText();
+            cbxTagList.Properties.DataSource = rfidClass.GetNewTags();
         }
-        private async void btnAdd_Click(object sender, EventArgs e)
-        {
-            var result =await rfidClass.GetRFID_ByTagID(txtTagNumber.EditValue.ToString().Trim());
-            if (result == null)
-            {
 
-                var newTag = new Tag();
-                newTag.TagID_HEX = txtTagNumber.EditValue.ToString().Trim();
-                newTag.Enabled = true; 
-                var resultSave =await rfidClass.AddNewTagCard(newTag);
-                if (resultSave)
-                {
-                    XtraMessageBox.Show(PublicVar.SuccessSaveToDatabase, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearForm();
-                }
-                else
-                    XtraMessageBox.Show(PublicVar.ErrorSaveToDatabase, Text, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-            }
-            else
-                XtraMessageBox.Show(PublicVar.DublicateRecord, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+
+        //private async void btnAdd_Click(object sender, EventArgs e)
+        //{
+        //    var result =await rfidClass.GetRFID_ByTagID(txtTagNumber.EditValue.ToString().Trim());
+        //    if (result == null)
+        //    {
+        //        var newTag = new Tag();
+        //        newTag.TagID_HEX = txtTagNumber.EditValue.ToString().Trim();
+        //        var resultSave =await rfidClass.AddNewTagCard(newTag);
+        //        if (resultSave)
+        //        {
+        //            XtraMessageBox.Show(PublicVar.SuccessSaveToDatabase, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            ClearForm();
+        //        }
+        //        else
+        //            XtraMessageBox.Show(PublicVar.ErrorSaveToDatabase, Text, MessageBoxButtons.OK,
+        //                MessageBoxIcon.Error);
+        //    }
+        //    else
+        //        XtraMessageBox.Show(PublicVar.DublicateRecord, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //}
     }
 }
